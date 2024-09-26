@@ -10,7 +10,7 @@ for i in range(5):
     print('Número gerado: ', n)
 
 
-#Gera números float aleatórios (não aceita parâmetros) 
+#Gera números float aleatórios (não aceita parâmetros) -
 valor = random.random()
 print('Número gerado: ', valor*10)
 
@@ -27,4 +27,4 @@ print('Números escolhidos: ', n)
 #Embaralhar
 print ('Exibir a lista original: ', L)
 print ('Embaralhar a lista e exibi-la: ')
-n = random.shuffle(L)
+n = random.shuffle(L) #Recebe a lista como parâmetro e embaralha a lista
