@@ -26,7 +26,7 @@ produtos = 'Carbonato de sódio e óxido de zinco'
 print('sódio' in produtos)
 print('magnésio' not in produtos)
 
-
+# O find vai dizer em qual posição inicia a cadeia passada dos parâmetros
 item = 'hipoclorito'
 pos = item.find('clor')
 print(pos)
@@ -55,3 +55,27 @@ print(frase.strip()) #Elimina os espaços a mais da esquerda e direita
 fruta = 'Abacate'
 print(fruta)
 print(fruta.rjust())
+
+
+#Lembrando: a contagem da cadeia começa em 0
+frase = 'Curso em Video'
+
+#Curso em video (0-13) -> len = 14
+print(frase[1:5]) #--> vai imprimir do 1ºcaractere ao 4ºcaractere (um por um)
+
+print(frase[1::5]) #--> vai imprimir do 1ºcaractere até o final (pulando de 5 em 5)
+
+print(frase[0:10:2])#--> vai imprimir do 0ºcaractere até o 9º caractere(pulando de dois em dois)
+
+print(frase.count('o')) #--> vai dizer a quantidade de vezes que tem o caractere passado como parâmetro
+
+print(len(frase)) #--> vai dizer o tamanho da cadeia de caracteres
+
+#É possível combinar manipulações:
+print(frase.lower().find('video')) #Eu tô transformando toda a cadeia em minuscula para achar o paramentro em  find() - retorna em valor booleano
+
+print(frase.upper().find('CURSO')) #Transformei toda a cadeia em maiuscula para achar o parametro em find() - retorna em valor booleano
+
+dividido = frase.split() #dividido é uma lista que tem 4 elementos = [curso, em, video]
+print(dividido[0])
+print(dividido[2][3]) #vai pegar o 3ºcaractere do 2º elemento da lista
