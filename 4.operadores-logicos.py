@@ -1,7 +1,7 @@
 #Operadores - Lógicos
-# &&    AND  --> Só é true quando todos os valores de entrada são TRUE
-# ||    OR   --> É true desde que um dos valores de entrada seja true
-# !     NOT  --> Recebe um valor de entrada e inverte o valor lógico
+# &&    AND  and --> Só é true quando todos os valores de entrada são TRUE
+# ||    OR   or  --> É true desde que um dos valores de entrada seja true
+# !     NOT  not --> Recebe um valor de entrada e inverte o valor lógico
 
 #Trabalham com valores true e false
 
