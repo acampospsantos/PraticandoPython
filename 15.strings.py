@@ -71,6 +71,14 @@ print(frase.count('o')) #--> vai dizer a quantidade de vezes que tem o caractere
 
 print(len(frase)) #--> vai dizer o tamanho da cadeia de caracteres
 
+frase.replace('Python','Android') #--> Vai substituir a String Android pela string Python
+
+frase.capitalize() #--> Vai pôr o PRIMEIRO caractere da cadeia como maiúsculo, os demais ficarão em minúsculo
+#Exemplo: frase = 'Curso em video'
+
+frase.title() #--> Vai pôr o primeiro caractere de cada palavra da cadeia como maiúsculo
+#Exemplo: frase = 'Curso Em Video'
+
 #É possível combinar manipulações:
 print(frase.lower().find('video')) #Eu tô transformando toda a cadeia em minuscula para achar o paramentro em  find() - retorna em valor booleano
 
