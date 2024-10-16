@@ -344,6 +344,7 @@ print('Nome em minúsculo: {}'.format(nomeMinusculo))
 print('Nome tem ao todo {} letras'.format(qtdTotalLetras))
 print('Primeiro nome: {} , tem {} letras'.format(listaNomes[0], qtdPrimeiroNome))
 
+
 # Enunciado 23
 # Faça um programa que leia um número de 0 a 9999 e mostre na tela cada um ods dígitos separados.
 numero = input('Digite um número: ')
@@ -395,3 +396,217 @@ print('Milhar: {}'.format(milhar))
 
 # Enunciado 24
 # Crie um programa que leia o nome de uma cidade e diga se ela começa ou não com o nome "SANTO".
+cidade = input('Digite o nome da sua cidade: ')
+
+cidadeAtualizada = cidade.upper()
+
+encontrar = cidadeAtualizada.find('SANTO')
+
+if(encontrar != 0):
+    print('Sua cidade não começa com SANTO')
+elif(encontrar == 0):
+    print('Sua cidade começa com SANTO')
+
+
+#Enunciado 25
+# Crie um programa que leia o nome de uma pessoa e diga se ela tem 'SILVA' no nome.
+nome = input('Digite seu nome: ')
+
+nome = nome.upper()
+
+encontrar = nome.find('SILVA')
+
+if (encontrar == -1):
+    print('{} não tem Silva!'.format(nome))
+else:
+    print('{} tem Silva!'.format(nome))
+
+
+# Enunciado 26
+# Faça um programa que leia uma frase pelo teclado e mostre:
+# - Quantas vezes aparece a letra "A"
+# - Em que posição ela aparece a primeira vez
+# - Em que posição ela aparece a última vez
+frase = input('Digite uma frase: ')
+
+frase = frase.upper()
+
+QtdA = frase.count('A')
+
+encontrar = frase.find('A')
+
+
+print('A letra ''A'' aparece: {} vezes'.format(QtdA))
+print('A letra ''A'' aparece pela primeira vez na posição: '.format(encontrar))
+print('A letra ''A'' aparece pela última vez na posição: '.format(frase.rfind('A')+1))
+
+
+# Enunciado 27
+# Faça um programa que leia o nome completo de uma pessoa, mostrando em seguida o primeiro e o último nome separadamente.
+nome = input('Digite seu nome completo: ')
+
+nomeSplit = nome.split()
+
+nomeTamanho = len(nomeSplit)
+
+primeiroNome = nomeSplit[0]
+
+UltimoNome = nomeSplit[nomeTamanho-1]
+
+print('Nome completo: {}'.format(nome))
+
+print('Primeiro: {}'.format(primeiroNome))
+
+print('Último: {}'.format(UltimoNome))
+
+
+# Enunciado 28
+# Escreva um programa que faça o computador 'pensar' em um número inteiro entre 0 e 5 e peça para o usuário tentar descobrir qual foi o número escolhido pelo computador.
+# O programa deverá escrever na tela se o usuário venceu ou perdeu.
+import random
+import time
+numeroAleatorio = random.randint(0, 5) #Computador vai escolher um número entre 0 e 5
+
+print('----- Tente adivinhar o número escolhido pelo computador! -----')
+numeroUsuario = int(input('Digite um número entre 0 e 5: '))
+print('\nProcessando....\n')
+time.sleep(2)
+print('\nNúmero escolhido: {} x {} :Número aleatório'.format(numeroUsuario, numeroAleatorio))
+
+if(numeroUsuario == numeroAleatorio):
+    print('--- Usuário venceu! ---')
+else:
+    print('--- Usuário perdeu! ---')
+
+
+# Enunciado 29
+# Escreva um programa que leia a velocidade de um carro.
+# Se ele ultrapassar 80Km/h, mostre uma mensagem dizendo que ele foi multado.
+# A multa vai custar R$7,00 por cada Km acima do limite.
+velocidadeCarro = int(input('Digite a velocidade do carro: '))
+velocidadePermitida = 80
+
+print('\nVelocidade permitida: {}km/h x {}km/h :Velocidade do veículo'.format(velocidadePermitida, velocidadeCarro))
+
+if(velocidadeCarro > 80):
+    velocidadeExcedente = velocidadeCarro - velocidadePermitida
+    multa = velocidadeExcedente * 7.00
+    print('Você foi multado!')
+    print('Excendente de velocidade = {}km/h'.format(velocidadeExcedente))
+    print('Valor da Multa = R${}'.format(multa))
+else:
+    print('Velocidade dentro do permitido!')
+
+
+# Enunciado 30
+# Crie um programa que leia um número inteiro e mostre na tela se ele é PAR ou ÍMPAR.
+numero = int(input('Digite um número: '))
+
+restoDiv = numero % 2
+
+if(restoDiv == 1):
+    print('{} é ÍMPAR!'.format(numero))
+else: #restoDiv == 0
+    print('{} é PAR!'.format(numero))
+
+
+# Enunciado 31
+# Desenvolva um programa que pergunte a distância de uma viagem em Km. Calcule o preço da passagem, cobrando R$0,50 por Km para viagens de até 200km e R$0,45 para viagens mais longas.
+distancia = float(input('Digite a distancia de sua viagem(em Km): '))
+
+precoPassagem = 0.0
+
+if(distancia <= 200):
+    precoPassagem = 0.5 * distancia
+else: # distancia > 200
+    precoPassagem = 0.45 * distancia
+
+print('Preço da Passagem = R${}'.format(precoPassagem)) 
+
+
+# Enunciado 32
+# Faça um programa que leia um ano qualquer e mostre se ele é BISSEXTO.
+ano = int(input('Digite o ano a ser consultado: '))
+
+if(ano % 4 == 0 and ano % 100 != 0 or ano % 400 == 0):
+    print('O ano {} é bissexto!'.format(ano))
+else: 
+    print('O ano {} não é bissexto!'.format(ano))
+
+
+# Enunciado 33
+# Faça um programa que leia três números e mostre qual é o maior e qual o menor.
+numero1 = int(input('Digite o primeiro número: '))
+numero2 = int(input('Digite o segundo número: '))
+numero3 = int(input('Digite o terceiro número: '))
+
+numeroMaior = numero1
+numeroMenor = numero1
+
+#Condição: numero1 x numero2
+if(numeroMaior < numero2):
+    numeroMaior = numero2
+    #numeroMenor continua sendo numero1
+else: #numeroMaior > numero2
+    #numeroMaior continua sendo numero1
+    numeroMenor = numero2 
+
+#Condição numero1 e numero2 x numero3
+if(numeroMaior < numero3):
+    numeroMaior = numero3
+
+#Condição numero1 e numero2 x numero3
+if (numeroMenor > numero3):
+    numeroMenor = numero3
+
+print('\nMaior número = {}'.format(numeroMaior))
+print('Menor número = {}'.format(numeroMenor))
+
+
+# Enunciado 34
+# Escreva um programa que pergunte o salário de um funcionário e calcule o valor de seu aumento.
+# Para salários superiores a R$1250,00 , calcule um aumento de 10%
+# Para inferiores ou iguais, o aumento é de 15%
+salario = float(input('Digite seu salário: R$'))
+
+if(salario > 1250.0):
+    print('Por ser mais que R$1250, o acréscimo é de 10%')
+    salarioAtualizado = salario + (salario*0.1)
+    print('Salário atualizado = R${}'.format(salarioAtualizado))
+else :
+    print('Por ser menos que R$1250, o acréscimo é de 15%')
+    salarioAtualizado = salario + (salario*0.15)
+    print('Salário atualizado = R${}'.format(salarioAtualizado))
+
+
+
+#Enunciado 35
+# Desenvolva um programa que leia o comprimento de três retas e diga ao usuário se eles podem ou não formar um triângulo.
+
+#Condição de existência:
+#um de seus lados deve ser maior que o valor absoluto (módulo) da diferença dos outros dois lados e menor que a soma dos outros dois lados.
+lado1 = int(input('Digite o lado1 do triângulo: '))
+lado2 = int(input('Digite o lado2 do triângulo: '))
+lado3 = int(input('Digite o lado3 do triângulo: '))
+
+principio1 = False
+principio2 = False
+principio3 = False
+
+if ( (abs(lado1 - lado2) < lado3) and ((lado1 + lado2) > lado3) ):
+    #print('Verdadeiro!')
+    principio1 = True
+
+if ( (abs(lado1 - lado3) < lado2) and ((lado1 + lado3) > lado2) ):
+    #print('Verdadeiro!')
+    principio2 = True
+
+if ( (abs(lado2 - lado3) < lado1) and ((lado2 + lado3) > lado1) ):
+    #print('Verdadeiro!')
+    principio3 = True
+
+
+if((principio1 == True) and (principio2 == True) and (principio3 == True)):
+    print('--- PODE FORMAR UM TRIÂNGULO! ---')
+else:
+    print('--- NÃO PODE FORMAR UM TRIÂNGULO! ---')
