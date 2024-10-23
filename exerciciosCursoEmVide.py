@@ -1,3 +1,6 @@
+#LISTA DE EXERCÍCIOS PYTHON - CURSO EM VÍDEO
+#(MUNDO1 - FUNDAMENTOS)
+
 #Enunciado 1
 # Crie um programa que imprime "Olá mundo" na tela
 print('Hello World!')
@@ -202,17 +205,10 @@ print('Valor Total = R${}'.format(valorTotal))
 # Enunciado 16
 # Crie um programa que leia um número real qualquer pelo teclado e mostre na tela a sua porção inteira.
 import math
-num = int(input('Digite um número inteiro: '))
+num = float(input('Digite um número inteiro: '))
 
-raiz = math.sqrt(num)
-
-raizCima = math.ceil(raiz) #--> O math.ceil() vai arredondar o parâmetro para o inteiro acima
-raizBaixo = math.floor(raiz) #--> O math.ceil() vai arredondar o parâmetro para o inteiro abaixo
-
-print('A raiz quadrada de {} = {}'.format(num, raiz)) 
-
-print('A raiz quadrada de {} = {}'.format(num, raizCima))
-print('A raiz quadrada de {} = {}'.format(num, raizBaixo))
+numInteiro = math.trunc(num)
+print('{} em sua versão inteira = {}'.format(num, numInteiro))
 
 
 # Enunciado 17
@@ -346,7 +342,7 @@ print('Primeiro nome: {} , tem {} letras'.format(listaNomes[0], qtdPrimeiroNome)
 
 
 # Enunciado 23
-# Faça um programa que leia um número de 0 a 9999 e mostre na tela cada um ods dígitos separados.
+# Faça um programa que leia um número de 0 a 9999 e mostre na tela cada um dos dígitos separados.
 numero = input('Digite um número: ')
 
 separacao = len(numero)
@@ -610,3 +606,7 @@ if((principio1 == True) and (principio2 == True) and (principio3 == True)):
     print('--- PODE FORMAR UM TRIÂNGULO! ---')
 else:
     print('--- NÃO PODE FORMAR UM TRIÂNGULO! ---')
+
+
+
+#(MUNDO2 - ESTRUTURAS DE CONTROLE)
