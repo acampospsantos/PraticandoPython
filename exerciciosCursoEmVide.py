@@ -610,3 +610,495 @@ else:
 
 
 #(MUNDO2 - ESTRUTURAS DE CONTROLE)
+
+#Enunciado 36
+#Escreva um programa para aprovar o empréstimo bancário para a compra de uma casa. O programa vai perguntar o valor da casa, o salário do comprador e em quantos anos ele vai pagar.
+#Calcule o valor da prestação mensal, sabendo que ela não pode exceder 30% do salário ou então o empréstimo será negado.
+
+valorCasa = float(input('Digite o valor da casa: '))
+
+SalarioComprador = float(input('Digite o salário do comprador: '))
+
+QtdAnosPagamento = float(input('Digite em quantos anos ele vai pagar: '))
+
+qtdMesesPagamento = QtdAnosPagamento * 12
+
+valorPrestacaoMensal = valorCasa/qtdMesesPagamento
+
+emprestimoMaximo = SalarioComprador*0.3 #Valor máximo de pagamento por mês (30% do salário)
+
+print('Salário do comprador = R${} , Valor Máximo do empréstimo = R${} , valor prestação mensal = R${}'.format(SalarioComprador, emprestimoMaximo, valorPrestacaoMensal))
+
+if(valorPrestacaoMensal > emprestimoMaximo):
+    print('Valor da prestação excedeu os 30% de salário do comprador!')
+    print('----- EMPRÉSTIMO NEGADO! -----')
+else:
+    print('----- EMPRÉSTIMO APROVADO! -----')
+
+
+#Enunciado 37
+# Escreva um programa que leia um número inteiro qualquer e peça para o usuário escolher qual será a base de conversão:
+# 1 Binário
+# 2 Octal
+#3 Hexadecimal
+numero = int(input('Digite um número: '))
+
+print('1 - Binário, 2 - Octal , 3 - Hexadecimal')
+
+opcao = input('Você deseja converter para qual base de conversão? : ')
+
+if(opcao == 1):
+    print('{} convertido para Binário = {}'.format(numero, bin(numero)[2:]))
+elif(opcao == 2):
+    print('{} convertido para Octal  = {}'.format(numero, oct(numero)[2:]))
+else: #opcao == 3
+    print('{} convertido para HexaDecimal = {}'.format(numero, hex(numero)[2:]))
+
+
+# Enunciado 38
+# Escreva um programa que leia dois números inteiros e compare-os, mostrando na tela uma mensagem: 
+# - O primeiro valor é maior
+# - O segundo valor é maior 
+# - NÃO EXISTE valor maior, os dois são iguais
+numero1 = int(input('Digite o primeiro número: '))
+numero2 = int(input('Digite o segundo número: '))
+
+print('Numero 1: {} x {} :Numero 2'.format(numero1, numero2))
+
+if(numero1 > numero2):
+    print('--- O primeiro valor é maior! ---')
+elif(numero1 < numero2):
+    print('-- O segundo valor é maior! ---')
+else: #numero1 == numero2
+    print('--- OS DOIS TEM O MESMO VALOR! ---')
+
+
+#Enunciado 39
+#Faça um programa que leia o ano de nascimento de um jovem e informe, de acordo com sua idade:
+# - Se ele ainda vai se alistar ao serviço militar.
+# - Se é a hora de se alistar.
+# - Se já passou do tempo do alistamento
+# Seu programa também deverá mostrar o tempo que falta ou que passou do prazo
+anoNascimento = int(input('Digite seu ano de nascimento: '))
+
+idade = 2024 - anoNascimento
+
+print('Idade = {} anos'.format(idade))
+
+if(anoNascimento>18):
+    print('Já passou do tempo de alistamento, há {} anos!'.format(idade-18))
+elif(anoNascimento == 18):
+    print('Idade para se alistar')
+else: #anoNascimento < 18
+    print('O jovem ainda vai se alistar daqui a {} anos'.format(18-idade))
+
+
+# Enunciado 40
+# Crie um programa que leia duas notas de um aluno e calcule sua média, mostrando uma mensagem no final, de acordo com a média atingida:
+# - Média abaixo de 5: REPROVADO
+# - Média entre 5 e 6.9: RECUPERAÇÃO
+# - Media 7 ou superior: APROVADO
+nota1 = float(input('Digite sua primeira nota: '))
+nota2 = float(input('Digite sua segunda nota: '))
+
+media = (nota1 + nota2)/2
+
+if(media < 5):
+    print('REPROVADO!')
+elif(media >= 5 and media <= 6.9):
+    print('RECUPERAÇÃO!')
+else : #media >= 7
+    print('APROVADO!')
+
+
+# Enunciado 41
+# A confederação nacional de natação precisa de um programa que leia o ano de nascimentode um atleta e mostre sua categoria, de acordo com sua idade:
+# Até 9 anos: MIRIM
+# Até 14 anos: INFANTIL 
+# Até 19 anos: JUNIOR
+# Até 20 anos: SÊNIOR
+# Acima: MASTER
+anoNascimento = int(input('Digite seu ano de nascimento: '))
+
+anoAtual = 2024
+
+idade = anoAtual - anoNascimento
+
+if(idade <= 9):
+    print('MIRIM')
+elif(idade <= 14):
+    print('INFANTIL')
+elif(idade <= 19):
+    print('JUNIOR')
+elif(idade <= 20):
+    print('SÊNIOR')
+else: #idade > 20
+    print('MASTER')
+
+
+# Enunciado 42
+# Refaça o DESAFIO 35 dos triângulos, acrescentando o recurso de mostrar que tipo de triângulo será formado:
+# Equilátero: todos os lados são iguais
+# Isósceles: dois lados iguais
+# Escaleno: todos os lados diferentes
+lado1 = int(input('Digite o lado1 do triângulo: '))
+lado2 = int(input('Digite o lado2 do triângulo: '))
+lado3 = int(input('Digite o lado3 do triângulo: '))
+
+principio1 = False
+principio2 = False
+principio3 = False
+principioTriangulo = False
+
+if ( (abs(lado1 - lado2) < lado3) and ((lado1 + lado2) > lado3) ):
+    #print('Verdadeiro!')
+    principio1 = True
+
+if ( (abs(lado1 - lado3) < lado2) and ((lado1 + lado3) > lado2) ):
+    #print('Verdadeiro!')
+    principio2 = True
+
+if ( (abs(lado2 - lado3) < lado1) and ((lado2 + lado3) > lado1) ):
+    #print('Verdadeiro!')
+    principio3 = True
+
+
+if((principio1 == True) and (principio2 == True) and (principio3 == True)):
+    principioTriangulo = True
+else:
+    print('--- NÃO PODE FORMAR UM TRIÂNGULO! ---')
+
+
+if(principioTriangulo == True):
+    if(lado1 == lado2 == lado3):
+        print('--- O TRIÂNGULO É EQUILÁTERO! ---')
+    elif(lado1 == lado2 or lado1 == lado3 or lado2 == lado3):
+        print('O TRIÂNGULO É ISÓSCELES! ---')
+    elif(lado1 != lado2 != lado3):
+        print('--- O TRIÂNGULO É ESCALENO! ---')
+
+
+# Enunciado 43
+# Desenvolva uma lógica que leia o peso e altura de uma pessoa, calcule seu IMC e mostre seu status, de acordo com a tabela abaixo:
+# - Abaixo de 18.5: Abaixo do peso
+# - Entre 18.5 e 25: Peso ideal
+# - 25 até 30: Sobrepeso
+# - 30 até 40: Obesidade
+# - Acima de 40: Obesidade mórbida
+peso = float(input('Digite seu peso(em Kg): '))
+altura = float(input('Digite sua altura(em metros): '))
+
+imc = peso/(altura**2)
+
+print('O IMC é = {}'.format(imc))
+if(imc < 18.5):
+    print('--- Abaixo do peso! ---')
+elif (imc >= 18.5 and imc <= 25):
+    print('--- Peso está ideal! ---')
+elif(imc > 25 and imc <= 30):
+    print('--- Sobrepreso! ---')
+elif(imc > 30 and imc <= 40):
+    print('--- Obesidade! ---')
+else: #imc > 40
+    print('--- Obesidade mórbida! ---')
+
+
+# Enunciado 44
+# Elabore um programa que calcule o valor a ser pago por um produto, considerando o seu preço normal e condição de pagamento:
+# À vista dinheiro/cheque: 10% de desconto
+# À vista no cartão: 5% de desconto
+# Em até 2x no cartão: preço normal
+# 3x ou mais no cartão: 20% de juros
+precoNormal = float(input('Digite o preço normal do produto: '))
+
+print('----- Condição de pagamento -----')
+print('1. - a vista dinheiro/cheque - 10% de desconto')
+print('2. - a vista no cartão - 5% de desconto')
+print('3. - em até 2x no cartão - preço normal')
+print('4. - 3x ou mais no cartão - 20% de juros\n')
+opcao = int(input('Digite a opção que deseja: '))
+
+precoFinal = precoNormal
+
+if(opcao == 1):
+    precoFinal = precoNormal - (precoNormal*0.1)
+elif(opcao == 2):
+    precoFinal = precoNormal - (precoNormal*0.05)
+elif(opcao == 3):
+    precoFinal = precoNormal
+else: #opcao == 4
+    precoFinal = precoNormal + (precoNormal*0.2)
+
+print('Preco Normal = {} , Preco Final = {}'.format(precoNormal, precoFinal))
+
+
+# Enunciado 45
+# Crie um programa que faça o computador jogar Pedra, Papel e Tesoura com você.
+import random
+
+lista = ['Pedra', 'Papel', 'Tesoura']
+
+opcaoComputador = random.choice(lista)
+
+opcaoJogador = input('Pedra, Papel ou Tesoura? : ')
+opcaoJogador = opcaoJogador.title()
+
+print('\nOpcao do Jogador = {} x {} = Opcao do Computador'.format(opcaoJogador, opcaoComputador))
+
+if(opcaoJogador == 'Pedra'):
+    if(opcaoComputador == 'Papel'):
+        print('--- VITÓRIA DO COMPUTADOR ---')
+    elif(opcaoComputador == 'Tesoura'):
+        print('--- VITÓRIA DO JOGADOR ---')
+    elif(opcaoComputador == 'Pedra'):
+        print('--- EMPATE ---')
+
+elif(opcaoJogador == 'Papel'):
+    if(opcaoComputador == 'Pedra'):
+        print('--- VITÓRIA DO JOGADOR ---')
+    elif(opcaoComputador == 'Tesoura'):
+        print('--- VITÓRIA DO COMPUTADOR ---')
+    elif(opcaoComputador == 'Papel'):
+        print('--- EMPATE ---')
+
+elif(opcaoJogador == 'Tesoura'):
+    if(opcaoComputador == 'Papel'):
+        print('--- VITÓRIA DO JOGADOR ---')
+    elif(opcaoComputador == 'Pedra'):
+        print('--- VITÓRIA DO COMPUTADOR ---')
+    elif(opcaoComputador == 'Tesoura'):
+        print('--- EMPATE ---')
+
+    
+# Enunciado 46
+# Faça um programa que mpstre na tela uma contagem regressiva para o estouro de fogos de artifício, indo de 10 até 0, com uma pausa de um segundo entre eles.
+import time
+
+print('----- CONTAGEM REGRESSIVA -----')
+for i in range(10, -1, -1):
+    print(i)
+    time.sleep(1)
+
+print('\n--- Fogos !!!!!!! ---')
+
+
+#Enunciado 47
+# Crie um programa que mostre na tela todos os números pares que estão no intervalo entre 1 e 50.
+listaPares = []
+
+print('--- Números pares entre 1 e 50 ---')
+for i in range(1, 51, 1):
+    if( i % 2 == 0):
+        print(i)
+        listaPares.append(i)
+
+print(listaPares)
+
+
+# Enunciado 48
+# Faça um programa que calcule a soma entre todos os números ímpares que são múltiplos de três e que se encontram no intervalo de 1 até 500.
+somatorio = 0
+qtd = 0
+
+for i in range(1, 501, 2): # Nesse for eu excluo os números pares
+    if(i%3 == 0):
+        qtd = qtd + 1
+        somatorio = somatorio + i
+
+print('Somatório dos {} ímpares múltiplos de 3 (de 1 até 500) = {}'.format(qtd, somatorio))
+
+
+# Enunciado 49
+# Refaça o DESAFIO 9, mostrando a tabuada de um número que o usuário escolher, só que agora utilizando um laço for.
+valor = int(input('Digite um valor: '))
+
+for i in range(0,11):
+    print('{}. {} x {} = {}'.format(i,valor, i, valor*i))
+
+
+# Enunciado 50
+# Desenvolva um programa que leia seis números inteiros e mostre a soma apenas daqueles que forem pares. Se o valor digitado for ímpar, desconsidere-o.
+import random
+
+somatorio = 0
+
+for i in range(1,7):
+    numero = random.randint(1, 1000)
+    print('{}. número: {}'.format(i, numero))
+    if(numero%2 == 0):
+        somatorio = somatorio + numero
+
+print('Somatório = {}'.format(somatorio))
+
+
+# Enunciado 51
+# Desenvolva um programa que leia o primeiro termo e a razão de uma PA. No final, mostre os 10 primeiros termos dessa progressão.
+#Formula: termoGeral = primeiroTermo + (posicaoTermo - 1)razao
+
+primeiroTermo = int(input('Digite o primeiro termo: '))
+
+razao = int(input('Digite a razão da PA: '))
+
+#Mostre os dez primeiros termos da progressão
+for i in range(1, 11):
+    termoGeral = primeiroTermo + (razao*(i - 1))
+    print('{}º Termo = {}'.format(i, termoGeral)) 
+
+
+# Enunciado 52
+# Faça um programa que leia um número inteiro e diga se ele é ou não um número primo
+numero = int(input('Digite um número: '))
+
+for i in range (2, numero+1):
+    if(i == numero):
+        print('--- {} É PRIMO!! ---'.format(numero))
+    if(numero%i == 0):
+        print('{} é divisível por: {}'.format(numero,i))
+        print('--- {} NÃO É PRIMO ---'.format(numero))
+
+
+# Enunciado 53
+# Crie um programa que leia uma frase qualquer e diga se ela é um palíndromo, desconsiderando os espaços.
+frase = input('Digite uma frase: ')
+
+frase = frase.lower()
+
+frase = frase.split()
+tamanhoFrase = len(frase)
+
+fraseJunta = ''
+
+for i in range(0, tamanhoFrase):
+    fraseJunta = fraseJunta + frase[i] #Tô concatendo as Strings
+
+fraseNova = ''
+
+for i in range(len(fraseJunta)-1, -1, -1):
+    fraseNova = fraseNova + fraseJunta[i] #Tô concatendo os caracteres da frase original, mas de maneira inversa
+
+print(fraseJunta)
+print(fraseNova)
+
+if(fraseJunta == fraseNova):
+    print('--- A frase {} É um Palíndromo! ---'.format(fraseJunta))
+else:
+    print('--- A frase {} NÃO É um Palíndromo! ---'.format(fraseJunta))
+
+
+# Enunciado 54
+# Crie um programa que leia o ano de nascimento de sete pessoas. No final, mostre quantas pessoas ainda não atingiram a maioridade e quantas já são maiores.
+listaDataNascimento = []
+
+for i in range(1,8):
+    pessoa = int(input('Digite seu ano de nascimento: '))
+    pessoaIdade = 2024 - pessoa
+    listaDataNascimento.append(pessoaIdade)
+
+#listaDataNascimento = [pessoa1, pessoa2, pessoa3, pessoa4, pessoa5, pessoa6, pessoa7]
+
+print(listaDataNascimento)
+
+maioridade = []
+menoridade = []
+
+for i in range(0,len(listaDataNascimento)):
+    if(listaDataNascimento[i] >= 18):
+        maioridade.append(listaDataNascimento[i])
+    else: # <18
+        menoridade.append(listaDataNascimento[i])
+
+print('Quantidade de pessoas que ATINGIU A MAIORIDADE = {}'.format(len(maioridade)))
+
+print('Quantidade de pessoas que NÃO ATINGIU A MAIORIDADE = {}'.format(len(menoridade)))
+
+print('Lista Maioridade = {}'.format(maioridade))
+print('Lista Menoridade = {}'.format(menoridade))
+
+
+
+# Enunciado 55
+# Faça um programa que leia o peso de cinco pessoas. No final, mostre qual foi o maior e o menor peso lidos.
+
+listaPeso = []
+
+for i in range(1, 6):
+    peso = int(input('Digite seu peso: '))
+    listaPeso.append(peso)
+
+listaPeso.sort()
+
+menorPeso = listaPeso[0]
+maiorPeso = listaPeso[len(listaPeso)-1]
+
+print('\n--- MAIOR E MENOR PESO ---')
+print('Maior peso = {}Kg'.format(maiorPeso))
+print('Menor peso = {}Kg'.format(menorPeso))
+#----------------------------------------------------------#
+#Outra forma de fazer (sem usar listas)
+maiorPeso = 0
+menorPeso = 300
+
+for i in range(1, 6):
+    peso = int(input('Digite seu peso em Kg: '))
+    if(peso > maiorPeso):
+        maiorPeso = peso
+    if(peso < menorPeso):
+        menorPeso = peso
+
+print('\n--- MAIOR E MENOR PESO ---')
+print('Maior peso = {}Kg'.format(maiorPeso))
+print('Menor peso = {}Kg'.format(menorPeso))
+
+# Enunciado 56
+# Desenvolva um programa que leia o nome, idade e sexo de 4 pessoas. No final do programa, mostre:
+# - A média de idade do grupo. 
+# - Qual é o nome do homem mais velho
+# - Quantas mulheres têm menos de 20 anos
+listaNome = []
+listaIdade = []
+listaSexo = []
+
+for i in range(0, 4):
+    nome = input('\nDigite o nome da pessoa: ')
+    listaNome.append(nome)
+
+    idade = int(input('Digite a idade da pessoa: '))
+    listaIdade.append(idade)
+
+    sexo = input('Digite o sexo da pessoa: ')
+    listaSexo.append(sexo)
+
+# I)
+idade = 0
+for i in range(0, 4):
+    idade = idade + listaIdade[i]
+
+mediaIdade = idade/len(listaIdade)
+print('\nA média de idade do grupo é = {} anos'.format(mediaIdade))
+
+# II)
+idadeMaisVelho = listaIdade[0]
+nomeMaisVelho = listaNome[0]
+for i in range(0,4):
+    if(listaSexo[i] == 'Masculino'):
+        if(listaIdade[i] > idadeMaisVelho):
+            idadeMaisVelho = listaIdade[i]
+            nomeMaisVelho = listaNome[i]
+
+print('O nome do homem mais velho é {} com = {} anos'.format(nomeMaisVelho,idadeMaisVelho))
+
+# III)
+menoridadeMulheres = 0
+maioridadeMulheres = 0
+listaMenoridade = {}
+
+for i in range(0,4):
+    if(listaSexo[i] == 'Feminino'):
+        if(listaIdade[i] < 20):
+            menoridadeMulheres = menoridadeMulheres + 1
+            listaMenoridade = listaNome[i]
+        else: #> 20
+            maioridadeMulheres = maioridadeMulheres + 1
+
+print('Quantidade de mulheres com menos de 20 anos = {} mulheres'.format(menoridadeMulheres))
+print('São ela(s): {}'.format(listaMenoridade))
