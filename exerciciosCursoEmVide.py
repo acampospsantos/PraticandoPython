@@ -887,10 +887,9 @@ print('\n--- Fogos !!!!!!! ---')
 listaPares = []
 
 print('--- Números pares entre 1 e 50 ---')
-for i in range(1, 51, 1):
-    if( i % 2 == 0):
-        print(i)
-        listaPares.append(i)
+for i in range(2, 51, 2):
+    print(i)
+    listaPares.append(i)
 
 print(listaPares)
 
@@ -913,7 +912,7 @@ print('Somatório dos {} ímpares múltiplos de 3 (de 1 até 500) = {}'.format(q
 valor = int(input('Digite um valor: '))
 
 for i in range(0,11):
-    print('{}. {} x {} = {}'.format(i,valor, i, valor*i))
+    print('{} x {} = {}'.format(valor, i, valor*i))
 
 
 # Enunciado 50
@@ -943,6 +942,7 @@ razao = int(input('Digite a razão da PA: '))
 for i in range(1, 11):
     termoGeral = primeiroTermo + (razao*(i - 1))
     print('{}º Termo = {}'.format(i, termoGeral)) 
+print('\n--- Acabou ---')
 
 
 # Enunciado 52
@@ -952,9 +952,11 @@ numero = int(input('Digite um número: '))
 for i in range (2, numero+1):
     if(i == numero):
         print('--- {} É PRIMO!! ---'.format(numero))
+        break
     if(numero%i == 0):
         print('{} é divisível por: {}'.format(numero,i))
         print('--- {} NÃO É PRIMO ---'.format(numero))
+        break
 
 
 # Enunciado 53
@@ -1036,10 +1038,13 @@ print('Menor peso = {}Kg'.format(menorPeso))
 #----------------------------------------------------------#
 #Outra forma de fazer (sem usar listas)
 maiorPeso = 0
-menorPeso = 300
+menorPeso = 0
 
 for i in range(1, 6):
     peso = int(input('Digite seu peso em Kg: '))
+    if(i==1):
+        maiorPeso = peso
+        menorPeso = peso
     if(peso > maiorPeso):
         maiorPeso = peso
     if(peso < menorPeso):
