@@ -1107,3 +1107,233 @@ for i in range(0,4):
 
 print('Quantidade de mulheres com menos de 20 anos = {} mulheres'.format(menoridadeMulheres))
 print('São ela(s): {}'.format(listaMenoridade))
+
+
+# Enunciado 57
+# Faça um programa que leia o sexo de uma pessoa, mas só aceite os valores 'M' ou 'F'. Caso esteja errado, peça a digitação novamente até ter um valor correto.
+sexo = input('Digite seu sexo(M ou F): ')
+
+sexo = sexo.upper()
+
+while(sexo != 'M' and sexo!= 'F'):
+    print('\n--- Valor inválido! Digite novamente! ---')
+    sexo = input('Digite seu sexo (M ou F): ')
+
+print('--- FIM ---')
+
+
+# Enunciado 58
+# Melhore o jogo do desafio 28 onde o computador vai "pensar" em um número entre 0 e 10. Só que agora o jogador vai tentar adivinhar até acertar, mostrando no final quantos palpites foram necessários para vencer.
+import random
+import time
+numeroAleatorio = random.randint(0, 10) #Computador vai escolher um número entre 0 e 5
+
+print('----- Tente adivinhar o número escolhido pelo computador! -----')
+numeroUsuario = int(input('Digite um número entre 0 e 10: '))
+print('\nProcessando....\n')
+time.sleep(1)
+
+tentativas = 1
+
+while(numeroUsuario != numeroAleatorio):
+    print('-- Palpite errado! Tente novamente! --')
+    numeroUsuario = int(input('Digite um número entre 0 e 10: '))
+    tentativas = tentativas + 1
+    print('\nProcessando....\n')
+    time.sleep(1)
+
+print('--- Usuário venceu! ---')
+print('Número de tentativas necessárias = {}'.format(tentativas))
+
+
+# Enunciado 59
+# Crie um programa que leia dois valores e mostre um menu na tela
+# [1] somar
+# [2] multiplicar
+# [3] maior
+# [4] novos números
+# [5] sair do programa
+# Seu programa deverá realizar a operaçao solicitada em cada caso.
+
+keepGoing = True
+
+while(keepGoing == True):
+    print('\n----- MENU -----')
+    numero1 = int(input('Digite o primeiro número: '))
+    numero2 = int(input('Digite o segundo número: '))
+    print('Operações: ')
+    print('[1] Somar')
+    print('[2] Multiplicar')
+    print('[3] Maior')
+    print('[4] Novos números')
+    print('[5] Sair do programa')
+    operacoes = int(input('Digite a operação que deseja: '))
+    
+    if(operacoes == 1):
+        soma = numero1 + numero2
+        print('A soma entre {} e {} = {}'.format(numero1, numero2, soma))
+    elif(operacoes == 2):
+        multiplica = numero1 * numero2
+        print('A multiplicação entre {} e {} = {}'.format(numero1, numero2, multiplica))
+    elif(operacoes == 3):
+        if(numero1 > numero2):
+            print('{} é maior que {}'.format(numero1, numero2))
+        elif(numero1 < numero2):
+            print('{} é maior que {}'.format(numero2, numero1))
+        else:
+            print('Os valores digitados são iguais = {}'.format(numero1))
+    elif(operacoes == 4):
+        keepGoing = True
+    elif(operacoes == 5):
+        # sair do programa
+        keepGoing = False
+
+print('------- FIM DO PROGRAMA -------')
+
+
+# Enunciado 60
+# Faça um programa que leia um número qualquer e mostre o seu fatorial
+numeroOriginal = int(input('Digite um número: '))
+
+numero = numeroOriginal
+
+calculo = numero
+
+while (numero > 1):
+    calculo = calculo * (numero-1)
+    numero = numero - 1
+
+print('{}! = {}'.format(numeroOriginal, calculo))
+
+
+# Enunciado 61
+# Refaça o desafio 51, lendo o primeiro termo e a razão de uma PA, mostrando os 10 primeiros termos da progressão usando a estrutura while.
+primeiroTermo = int(input('Digite o primeiro termo: '))
+
+razao = int(input('Digite a razão da PA: '))
+
+#Mostre os dez primeiros termos da progressão
+i = 1
+while(i<11):
+    termoGeral = primeiroTermo + (razao*(i-1))
+    print('{}º Termo = {}'.format(i, termoGeral)) 
+    i = i + 1
+print('\n--- Acabou ---')
+
+
+# Enunciado 62
+# Melhore o desafio 61, perguntando para o usuário se ele quer mostrar mais alguns termos. O programa encerra quando ele disser que quer mostrar 0 termos.
+primeiroTermo = int(input('Digite o primeiro termo: '))
+
+razao = int(input('Digite a razão da PA: '))
+
+#Mostre os dez primeiros termos da progressão
+i = 1
+while(i<11):
+    termoGeral = primeiroTermo + (razao*(i-1))
+    print('{}º Termo = {}'.format(i, termoGeral)) 
+    i = i + 1
+
+n = i
+termosAdicionais = 1
+while(termosAdicionais != 0):
+    termosAdicionais = int(input('Digite quantos termos a mais você deseja: '))
+    if(termosAdicionais == 0): #Condição de parada
+        break
+    for n in range(n, n+termosAdicionais):
+        termoGeral = primeiroTermo + (razao*(n-1))
+        print('{}º Termo = {}'.format(n, termoGeral))
+    n = n + 1
+
+print('\n--- Acabou ---')
+
+
+# Enunciado 63
+# Escreve um programa que leia um número n inteiro qualquer e mostre na tela os n primeiros elementos de uma sequência de Fibonacci
+n = int(input('Digite um valor n para calcular: '))
+
+player = 0
+
+anterior = 0
+resultado = 0
+resultadoAuxiliar = 0
+
+listaFibonacci = []
+
+while (player < n+1):
+    if(player == 0):
+        listaFibonacci.append(player)
+        resultado = 1
+        resultadoAuxiliar = 1
+        anterior = 0
+        listaFibonacci.append(resultado)
+    else: #player > 0
+        resultado =  resultadoAuxiliar + anterior
+        listaFibonacci.append(resultado)
+        anterior = resultadoAuxiliar
+        resultadoAuxiliar = resultado
+    player = player + 1
+
+print('Sequência de Fibonocci com {} valores: '.format(n))
+print(listaFibonacci)
+
+#Exemplo
+#0 --> 1 --> 1 --> 2 --> 3 --> 5 --> 8 --> 13 --> 21
+#0     1     2     3     4     5     6      7      8
+
+# Enunciado 64
+# Crie um programa que leia vários números inteiros pelo teclado. O programa só vai parar quando o usuário digitar o valor 999, que é a condição de parada.
+# No final, mostre quantos números foram digitados e qual foi a soma entre eles (desconsiderando a flag - 999)
+
+numero = int(input('Digite um número: '))
+
+contador = 1
+somatorio = numero
+
+while(numero != 999):
+    numero = int(input('Digite um número: '))
+    if(numero == 999):
+        break
+    contador = contador + 1
+    somatorio = somatorio + numero
+
+print('\n----- ACABOU -----')
+print('A quantidade de números digitados foi = {}'.format(contador))
+print('A soma entre os {} números foi = {}'.format(contador, somatorio))
+
+
+# Enunciado 65
+# Crie um programa que leia vários números inteiros pelo teclado. No final da execução, mostre a média entre todos os valores e qual foi o maior e menor valores lidos.
+# O programa deve perguntar ao usuário se ele quer ou não continuar a digitar valores.
+numero = int(input('Digite um valor: '))
+
+contador = 1
+somatorio = numero
+
+keepGoing = True
+
+maiorNumero = numero
+menorNumero = numero
+
+while(keepGoing == True):
+    numero = int(input('Digite um valor: '))
+    contador = contador + 1
+    somatorio = somatorio + numero
+    if(numero > maiorNumero):
+        maiorNumero = numero
+    if(numero < menorNumero):
+        menorNumero = numero
+
+    keepGoing = input('Deseja continuar no programa? (S/N)')
+    if(keepGoing == 'S'):
+        keepGoing = True
+    elif(keepGoing == 'F'):
+        keepGoing = False
+
+print('\n----- FIM -----')
+
+mediaPrograma = somatorio/contador
+
+print('Média do programa = {}'.format(mediaPrograma))
+
+print('Maior número = {} , Menor número = {}'.format(maiorNumero, menorNumero))
