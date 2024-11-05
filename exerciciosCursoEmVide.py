@@ -1118,6 +1118,10 @@ sexo = sexo.upper()
 while(sexo != 'M' and sexo!= 'F'):
     print('\n--- Valor inválido! Digite novamente! ---')
     sexo = input('Digite seu sexo (M ou F): ')
+if(sexo == 'M'):
+    print('Sexo do usuário: Masculino')
+elif (sexo == 'F'):
+    print('Sexo do usuário: Feminino')
 
 print('--- FIM ---')
 
@@ -1136,7 +1140,10 @@ time.sleep(1)
 tentativas = 1
 
 while(numeroUsuario != numeroAleatorio):
-    print('-- Palpite errado! Tente novamente! --')
+    if(numeroAleatorio > numeroUsuario):
+        print('-- Palpite errado! Tente novamente! (Pra mais) --')
+    else: #numAleatorio < numUsuario
+        print('-- Palpite errado! Tente novamente! (Pra menos) --')    
     numeroUsuario = int(input('Digite um número entre 0 e 10: '))
     tentativas = tentativas + 1
     print('\nProcessando....\n')
@@ -1154,13 +1161,17 @@ print('Número de tentativas necessárias = {}'.format(tentativas))
 # [4] novos números
 # [5] sair do programa
 # Seu programa deverá realizar a operaçao solicitada em cada caso.
+import time
 
 keepGoing = True
+atualizaNumeros = True
 
 while(keepGoing == True):
     print('\n----- MENU -----')
-    numero1 = int(input('Digite o primeiro número: '))
-    numero2 = int(input('Digite o segundo número: '))
+    if(atualizaNumeros == True):
+        numero1 = int(input('Digite o primeiro número: '))
+        numero2 = int(input('Digite o segundo número: '))
+        atualizaNumeros = False
     print('Operações: ')
     print('[1] Somar')
     print('[2] Multiplicar')
@@ -1184,9 +1195,12 @@ while(keepGoing == True):
             print('Os valores digitados são iguais = {}'.format(numero1))
     elif(operacoes == 4):
         keepGoing = True
+        atualizaNumeros = True
     elif(operacoes == 5):
         # sair do programa
         keepGoing = False
+    
+    time.sleep(0.5)
 
 print('------- FIM DO PROGRAMA -------')
 
@@ -1197,13 +1211,25 @@ numeroOriginal = int(input('Digite um número: '))
 
 numero = numeroOriginal
 
-calculo = numero
+calculo = numeroOriginal
 
 while (numero > 1):
     calculo = calculo * (numero-1)
     numero = numero - 1
 
 print('{}! = {}'.format(numeroOriginal, calculo))
+######################
+#Utilizando FOR
+numeroOriginal = int(input('Digite o número: '))
+
+numeroBase = numeroOriginal
+calculo = numeroOriginal
+
+for i in range(calculo, 1, -1):
+    numeroBase = numeroBase * (calculo-1)
+    calculo = calculo - 1
+
+print('{}! = {}'.format(numeroOriginal, numeroBase))
 
 
 # Enunciado 61
@@ -1234,17 +1260,19 @@ while(i<11):
     print('{}º Termo = {}'.format(i, termoGeral)) 
     i = i + 1
 
-n = i
+n = i #i == 11
 termosAdicionais = 1
 while(termosAdicionais != 0):
     termosAdicionais = int(input('Digite quantos termos a mais você deseja: '))
-    if(termosAdicionais == 0): #Condição de parada
+    if(termosAdicionais == 0): #Condição de parada do loop
+        n = n - 1
         break
     for n in range(n, n+termosAdicionais):
         termoGeral = primeiroTermo + (razao*(n-1))
         print('{}º Termo = {}'.format(n, termoGeral))
     n = n + 1
 
+print('--- Progressão finalizada com {} termos mostrados. ---'.format(n))
 print('\n--- Acabou ---')
 
 
@@ -1252,7 +1280,7 @@ print('\n--- Acabou ---')
 # Escreve um programa que leia um número n inteiro qualquer e mostre na tela os n primeiros elementos de uma sequência de Fibonacci
 n = int(input('Digite um valor n para calcular: '))
 
-player = 0
+player = 1
 
 anterior = 0
 resultado = 0
@@ -1260,35 +1288,38 @@ resultadoAuxiliar = 0
 
 listaFibonacci = []
 
-while (player < n+1):
-    if(player == 0):
-        listaFibonacci.append(player)
+if (n == 1):
+    listaFibonacci.append(0)
+
+while (player < n):
+    if(resultado == 0):
+        listaFibonacci.append(resultado)
         resultado = 1
         resultadoAuxiliar = 1
         anterior = 0
         listaFibonacci.append(resultado)
-    else: #player > 0
+    else: 
         resultado =  resultadoAuxiliar + anterior
         listaFibonacci.append(resultado)
         anterior = resultadoAuxiliar
         resultadoAuxiliar = resultado
     player = player + 1
 
-print('Sequência de Fibonocci com {} valores: '.format(n))
+print('Sequência de Fibonacci com {} valores: '.format(n))
 print(listaFibonacci)
 
 #Exemplo
 #0 --> 1 --> 1 --> 2 --> 3 --> 5 --> 8 --> 13 --> 21
-#0     1     2     3     4     5     6      7      8
+#1     2     3     4     5     6     7      8      9
+
 
 # Enunciado 64
 # Crie um programa que leia vários números inteiros pelo teclado. O programa só vai parar quando o usuário digitar o valor 999, que é a condição de parada.
 # No final, mostre quantos números foram digitados e qual foi a soma entre eles (desconsiderando a flag - 999)
 
-numero = int(input('Digite um número: '))
-
-contador = 1
-somatorio = numero
+numero = 0
+contador = 0
+somatorio = 0
 
 while(numero != 999):
     numero = int(input('Digite um número: '))
@@ -1302,29 +1333,29 @@ print('A quantidade de números digitados foi = {}'.format(contador))
 print('A soma entre os {} números foi = {}'.format(contador, somatorio))
 
 
+
 # Enunciado 65
 # Crie um programa que leia vários números inteiros pelo teclado. No final da execução, mostre a média entre todos os valores e qual foi o maior e menor valores lidos.
 # O programa deve perguntar ao usuário se ele quer ou não continuar a digitar valores.
-numero = int(input('Digite um valor: '))
-
-contador = 1
-somatorio = numero
-
+contador = 0
+somatorio = 0
 keepGoing = True
-
-maiorNumero = numero
-menorNumero = numero
 
 while(keepGoing == True):
     numero = int(input('Digite um valor: '))
     contador = contador + 1
     somatorio = somatorio + numero
-    if(numero > maiorNumero):
+    if(contador == 1):
         maiorNumero = numero
-    if(numero < menorNumero):
         menorNumero = numero
+    else: # contador > 1
+        if(numero > maiorNumero):
+            maiorNumero = numero
+        if(numero < menorNumero):
+            menorNumero = numero
 
     keepGoing = input('Deseja continuar no programa? (S/N)')
+    keepGoing = keepGoing.upper()
     if(keepGoing == 'S'):
         keepGoing = True
     elif(keepGoing == 'F'):
@@ -1337,3 +1368,4 @@ mediaPrograma = somatorio/contador
 print('Média do programa = {}'.format(mediaPrograma))
 
 print('Maior número = {} , Menor número = {}'.format(maiorNumero, menorNumero))
+ 
