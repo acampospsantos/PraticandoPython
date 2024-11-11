@@ -1369,3 +1369,227 @@ print('Média do programa = {}'.format(mediaPrograma))
 
 print('Maior número = {} , Menor número = {}'.format(maiorNumero, menorNumero))
  
+
+#Enunciado 66
+# Crie um programa que leia vários números inteiros pelo teclado. O programa só vai parar quando o usuário digitar o valor 999, que é a condição de parada.
+# No final, mostre quantos números foram digitados e qual foi a soma entre eles (desconsiderando o flag)
+
+contador = 0
+somaAcumulada = 0
+
+while (True):
+    numero = int(input('Digite um número inteiro: '))
+    if(numero == 999):
+        break
+    contador = contador + 1
+    somaAcumulada = somaAcumulada + numero
+
+print('\nQuantidade de números foi = {}'.format(contador))
+print('Soma acumulada entre os {} números foi = {}'.format(contador, somaAcumulada))
+
+
+#Enunciado 67
+# Faça um programa que mostre a tabuada de vários números, um de cada vez, para cada valor digitado pelo usuário. 
+# O programa será interrompido quando o número solicitado for negativo.
+
+i = 1
+while (True):
+    numero = int(input('\nQuer ver a tabuada de qual valor? : '))
+    if(numero <= -1):
+        break
+    for i in range(1, 11):
+        print('{}. {} x {} = {}'.format(i, numero, i, numero*i))
+        i = i + 1
+
+print('--- ACABOU ---')
+
+
+#Enunciado 68
+# Faça um programa que jogue par ou ímpar com o computador.
+# O jogo só será interrompido quando o jogador PERDER, mostrando o total de vitórias consecutivas que ele conquistou no final do jogo. 
+import random
+import time
+
+print('----- Jogo: Par ou Ímpar -----')
+
+vitoriasConsecutivas = 0
+
+while True:
+    opcao = input('Par ou Ímpar? (P ou I): ')
+    opcao = opcao.upper()
+    while(opcao != 'P' and opcao != 'I'):
+        opcao = input('Par ou Ímpar? (P ou I): ')
+        opcao = opcao.upper()
+    numeroJogador = int(input('Digite seu número: '))
+    numeroComputador = random.randint(0,10)
+    print('\n --- Loading --- \n')
+    time.sleep(1)
+
+    soma = numeroJogador + numeroComputador
+    resultado = soma%2
+
+    if(opcao == 'P'):
+        if(resultado == 0):
+            print('Jogador jogou {} , Computador jogou {} , {} é Par!'.format(numeroJogador, numeroComputador, soma))
+            print('--- Vitória do Jogador! ---')
+            vitoriasConsecutivas = vitoriasConsecutivas + 1
+        else: #resultado == 1
+            print('Jogador jogou {} , Computador jogou {} , {} é Ímpar!'.format(numeroJogador, numeroComputador, soma))
+            print('--- Vitória do Computador! ---')
+            break
+
+    else: #opcao == 'I'
+        if(resultado == 0):
+            print('Jogador jogou {} , Computador jogou {} , {} é Par!'.format(numeroJogador, numeroComputador, soma))
+            print('--- Vitória do Computador! ---')
+            break
+        else: #resultado == 1
+            print('Jogador jogou {} , Computador jogou {} , {} é Ímpar!'.format(numeroJogador, numeroComputador, soma))
+            print('--- Vitória do Jogador! ---')
+            vitoriasConsecutivas = vitoriasConsecutivas + 1
+
+print('--- GAMER OVER! ---')
+print('Quantidade de vitórias do jogador: {}'.format(vitoriasConsecutivas))
+
+
+#Enunciado 69
+# Crie um programa que leia a idade e o sexo de várias pessoas. A cada pessoa cadastrada, o programa deverá perguntar se o usuário quer ou não continuar. No final, mostre:
+# a) Quantas pessoas tem mais de 18 anos
+# b) Quantos homens foram cadastrados
+# c) Quantas mulheres tem menos de 20 anos.
+listaIdade = []
+
+listaSexo = []
+print('------------------------------')
+print('     CADASTRE UMA PESSOA')
+print('------------------------------')
+
+while (True):
+    idade = int(input('Digite sua idade: '))
+    while(type(idade) != int):
+        idade = int(input('Digite sua idade: '))
+    listaIdade.append(idade)
+
+    sexo = input('Digite seu sexo (M/F): ')
+    sexo = sexo.upper()
+    while(sexo != 'M' and sexo != 'F'):
+        sexo = input('Digite seu sexo (M/F): ')
+        sexo = sexo.upper()
+    listaSexo.append(sexo)
+
+    var = input('Deseja continuar? (S/N)')
+    var = var.upper()
+    while(var != 'S' and var != 'N'):
+        var = input('Deseja continuar? (S/N)')
+        var = var.upper()
+    if(var == 'N'):
+        break
+    
+print('--- FIM ---')
+
+# Contagem de pessoas com mais de 18 anos
+maioridade = 0
+for i in listaIdade:
+    if (i >= 18):
+        maioridade = maioridade + 1
+
+# Contagem de homens
+qtdHomens = 0
+for i in listaSexo:
+    if(i == 'M'):
+        qtdHomens = qtdHomens + 1
+
+# Contagem de mulheres menores de 20 anos
+qtdMulheresMenores = 0
+indice = 0
+for i in listaSexo:
+    if(i == 'F'):
+        if(listaIdade[indice] < 20):
+            qtdMulheresMenores = qtdMulheresMenores + 1
+    indice = indice + 1
+
+print('\nQuantidade pessoas com mais de 18 anos: {}'.format(maioridade))
+print('Quantidade de homens cadastrados = {}'.format(qtdHomens))
+print('Quantidade de mulheres com menos de 20 anos = {}'.format(qtdMulheresMenores))
+
+
+#Enunciado 70
+# Crie um programa que leia o nome e o preço de vários produtos. O programa deverá perguntar se o usuário vai continuar. No final, mostre:
+# a) Qual é o total gasto na compra.
+# b) Quantos produtos custam mais de R$1000
+# c) Qual é o nome do produto mais barato.
+totalGasto = 0
+produtosMilReais = 0
+qtdProdutos = 0
+nomeProdutoBarato = ''
+
+print('------------------------------')
+print('         LOJA ANTSU           ')
+print('------------------------------')
+
+while True:
+    qtdProdutos = qtdProdutos + 1
+    nomeProduto = input('\nDigite o nome do produto: ')
+    nomeProduto = nomeProduto.capitalize()
+    precoProduto = float(input('Digite o preço do produto: '))
+    if(qtdProdutos == 1):
+        precoProdutoBarato = precoProduto
+        nomeProdutoBarato = nomeProduto
+    if(precoProduto < precoProdutoBarato):
+        precoProdutoBarato = precoProduto
+        nomeProdutoBarato = nomeProduto
+    if(precoProduto >= 1000):
+        produtosMilReais = produtosMilReais + 1
+    totalGasto = totalGasto + precoProduto
+
+    continuar = input('Deseja continuar? (S/N)')
+    continuar = continuar.upper()
+    while(continuar != 'S' and continuar != 'N'):
+        continuar = input('Deseja continuar? (S/N)')
+        continuar = continuar.upper()
+    if(continuar == 'N'):
+        break
+
+
+print('\n----- FIM -----')
+print('Total gasto na compra = R${}'.format(totalGasto))
+print('Quantidade de produtos que custam mais de R$1000 = {}'.format(produtosMilReais))
+print('Nome do produto mais barato = {} , que custa R${}'.format(nomeProdutoBarato,precoProdutoBarato))
+
+
+#Enunciado 71
+# Crie um programa que simule o funcionamento de um caixa eletrônico. No início, pergunte ao usuário qual será o valor a ser sacado(número inteiro) e o programa vai informar quantas cédulas de cada valor serão entregues.
+#OBS: Considere que o caixa possui cédulas de R$50, R$20, R$10 e R$1
+print('----- CAIXA ELETRÔNICO -----\n')
+
+valorSacar = int(input('Digite o valor a ser sacado: R$'))
+
+valor = valorSacar
+
+qtdCinquenta = 0 
+qtdVinte = 0
+qtdDez = 0
+qtdUm = 0
+
+print('Quantidade a sacar: R${}'.format(valorSacar))
+if(valor >= 50):
+    qtdCinquenta = valor/50 #Representa a qtd de notas de 50
+    valor = valor%50
+    print('{} cédulas de R$50'.format(int(qtdCinquenta)))
+
+if(valor >= 20):
+    qtdVinte = valor/20 #Representa a qtd de notas de 20
+    valor = valor%20
+    print('{} cédulas de R$20'.format(int(qtdVinte)))
+
+if(valor >= 10):
+    qtdDez = valor/10 #Representa a qtd de notas de 10
+    valor = valor%10
+    print('{} cédulas de R$10'.format(int(qtdDez)))
+    
+if(valor >= 1):
+    qtdUm = valor/1 #Representa a qtd de notas de 1
+    valor = valor%1
+    print('{} cédulas de R$1'.format(int(qtdUm)))
+
+
