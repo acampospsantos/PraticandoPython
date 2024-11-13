@@ -1593,3 +1593,150 @@ if(valor >= 1):
     print('{} cédulas de R$1'.format(int(qtdUm)))
 
 
+# Enunciado 72
+# Crie um programa que tenha uma tupla totalmente preenchida com uma contagem por extensão, de zero até 20.
+# Seu programa deverá ler um número pelo teclado (entre 0 e 20) e mostrá-lo por entenso.
+tuplaNumeros = ('Zero', 'Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Dez', 'Onze', 'Doze', 'Treze', 'Quatorze', 'Quinze', 'Dezesseis', 'Dezessete', 'Dezoito', 'Dezenove', 'Vinte')
+
+numero = int(input('Digite um número entre 0 e 20: '))
+while(numero < 0 or numero > 20):
+    numero = int(input('Digite um número entre 0 e 20: '))
+
+print('O número {} digitado por extenso = {}'.format(numero, tuplaNumeros[numero]))
+
+
+# Enunciado 73
+# Crie uma tupla preenchida com os 20 primeiros colocados da tabela do brasileirão de futebol, na ordem de colocação.
+# Depois mostre:
+# a) Apenas os 5 primeiros colocados
+# b) Os últimos 4 colocados da tabela
+# c) Uma lista com os times em ordem alfabética
+# d) Em que posição na tabela está o time da Chapecoense.
+tuplaBrasileirao = ('São Paulo', 'Santos', 'Corinthians', 'Palmeiras', 'Flamengo', 'Fluminense', 'Botafogo', 'Vasco', 'Cruzeiro', 'Atlético MG', 'Internacional', 'Grêmio', 'Atlético PR', 'Coritiba', 'Sport', 'Bahia', 'Chapecoense', 'Goiás', 'Bragantino', 'Atletico Goianiense')
+
+# a)
+print('Os cinco melhores colocados: ')
+for time in range(0, 5):
+    print('{}. {}'.format(time+1, tuplaBrasileirao[time]))
+#Outra forma de fazer
+#for time in tuplaBrasileirao[0:5]:
+#    print('{}'.format(time))
+
+# b)
+print('Os últimos quatro colocados: ')
+for time in range(16, 20):
+    print('{}. {}'.format(time+1, tuplaBrasileirao[time]))
+#Outra forma de fazer
+#i = 16
+#for time in tuplaBrasileirao[16:20]:
+#    print('{}. {}'.format(i, time))
+#    i = i + 1
+
+# c)
+print('Lista dos times em ordem alfabética: {}'.format(sorted(tuplaBrasileirao)))
+
+# d)
+print('Posição da Chapecoense na tabela: {}'.format(tuplaBrasileirao.index('Chapecoense')+1))
+#Outra forma de fazer
+#posicao = 1
+#for i in tuplaBrasileirao:
+#    if(i == 'Chapecoense'):
+#        print('Posição da Chapecoense na tabela: {}'.format(posicao))
+#        break
+#    posicao = posicao + 1
+
+
+# Enunciado 74
+# Crie um programa que vai gerar cinco números aleatórios e colocar em uma tupla.
+# Depois disso, mostre a listagem de números gerados e também indique o menor e o maior valor que estão na tupla.
+import random
+
+numeroUm = random.randint(0, 100)
+numeroDois = random.randint(0, 100)
+numeroTres = random.randint(0, 100)
+numeroQuatro = random.randint(0, 100)
+numeroCinco = random.randint(0, 100)
+
+tuplaAleatorios = (numeroUm, numeroDois, numeroTres, numeroQuatro, numeroCinco)
+
+print('Listagem dos números gerados: {}'.format(tuplaAleatorios))
+
+listaOrdenada = sorted(tuplaAleatorios)
+
+menorValor = listaOrdenada[0]
+maiorValor = listaOrdenada[4]
+
+print('Menor valor da tupla = {}'.format(menorValor))
+print('Maior valor da tupla = {}'.format(maiorValor))
+
+
+# Enunciado 75
+# Desenvolva um programa que leia quatro valores pelo teclado e guarde-os em uma tupla. No final, mostre:
+# a) Quantas vezes apareceu o valor 9
+# b) Em que posição foi digitado o primeiro valor 3.
+# c) Quais foram os números pares
+
+
+numero1 = int(input('Digite um valor inteiro: ')) 
+numero2 = int(input('Digite um valor inteiro: '))
+numero3 = int(input('Digite um valor inteiro: '))
+numero4 = int(input('Digite um valor inteiro: '))
+
+tuplaNumeros = (numero1, numero2, numero3, numero4)
+
+#a)
+qtdVezes9 = tuplaNumeros.count(9)
+print('Quantidade de vezes que apareceu o número 9 = {}'.format(qtdVezes9))
+
+#b)
+#print('Posição que apareceu o número 3 pela primeira vez = {}'.format(tuplaNumeros.index(3)))
+cont = 0
+apareceu = False
+for i in tuplaNumeros:
+    if(i == 3):
+        print('Posição que apareceu o número 3 pela primeira vez = {}'.format(cont))
+        apareceu = True
+        break
+    cont = cont + 1
+if(apareceu == False):
+    print('--- O valor 3 não foi digitado! ---')
+
+#c)
+print('Números da tupla que são pares: ')
+for i in tuplaNumeros:
+    if(i%2 == 0):
+        print('- {}'.format(i))
+
+
+# Enunciado 76
+# Crie um programa que tenha uma tupla única com nomes de produtos e seus respectivos preços, na sequência.
+# No final, mostre uma listagem de preços, organizando os dados de forma tabular.
+
+tuplaProdutos = ('Azeite', 50, 'Arroz', 10, 'Frango', 20, 'Whey', 100)
+
+print('----------------------------------')
+print('----- Listagem de preços -----')
+print('----------------------------------')
+
+
+for i in range(0, len(tuplaProdutos)):
+    if (i%2 == 0):
+        print('{} ............ R$ {}'.format(tuplaProdutos[i], tuplaProdutos[i+1]))
+
+print('----------------------------------')
+
+print('\n----- FIM -----')
+
+
+# Enunciado 77
+# Crie um programa que tenha uma tupla com várias palavras(não usar acentos).
+# Depois disso, você deve mostrar, para cada palavra, quais são suas vogais.
+tuplaPalavras = ('Sport', 'Botafogo', 'Operario')
+
+for i in range(0, len(tuplaPalavras)):
+    print('\nNa palavra {} temos: '.format(tuplaPalavras[i].upper()), end=' ')
+    for letras in tuplaPalavras[i]:
+        if(letras == 'a' or letras == 'e' or letras == 'i' or letras == 'o' or letras == 'u'):
+            print('{}'.format(letras), end='  ')
+        
+
