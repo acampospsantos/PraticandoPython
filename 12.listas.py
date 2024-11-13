@@ -36,6 +36,8 @@ valores.pop(3) #Nesse caso o pop retira o elemento de índice 3
 
 valores.insert(3,21) #A função insert recebe dois parâmetros(posição e valor do elemento) - após isso, a função faz a inserção
 
+valores.remove(10) # A função remove retira o valor que está sendo passado como parâmetro
+
 print(12 in valores) #O 'in' nesse caso faz a procura do elemento na lista
 
 planetas = ['Mercúrio', 'Vênus', 'Marte', 'Saturno', 'Urano', 'Netuno'] #Iteração da lista
