@@ -1738,5 +1738,27 @@ for i in range(0, len(tuplaPalavras)):
     for letras in tuplaPalavras[i]:
         if(letras == 'a' or letras == 'e' or letras == 'i' or letras == 'o' or letras == 'u'):
             print('{}'.format(letras), end='  ')
-        
 
+
+# Enunciado 78
+# 
+
+
+# Enunciado 79
+# 
+
+
+# Enunciado 80
+#
+
+
+# Enunciado 81
+#
+
+
+# Enunciado 82
+#
+
+
+# Enunciado 83
+#
