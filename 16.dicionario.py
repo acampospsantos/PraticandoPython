@@ -89,3 +89,17 @@ dados['idade'] = 24
 dados['peso'] = 92
 
 print(dados)
+
+# Criando dicionários e inserindo em listas
+
+estado = {}
+brasil = []
+
+for i in range(0, 3):
+    estado['uf'] = input('Unidade Federativa: ')
+    estado['sigla'] = input('Sigla do estado: ')
+    brasil.append(estado.copy())
+
+for e in brasil:
+    for k, v in e.items():
+        print('O campo {} tem valor {}'.format(k, v))
