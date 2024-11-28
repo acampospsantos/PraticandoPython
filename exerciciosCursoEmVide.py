@@ -1741,24 +1741,451 @@ for i in range(0, len(tuplaPalavras)):
 
 
 # Enunciado 78
-# 
+# Faça um programa que leia 5 valores e guarde-os em uma lista.
+# No final, mostre qual o foi maior e o menor valor digitado e as suas respectivas posições na lista.
+import random
+
+listaNumeros = []
+
+for i in range (0, 5):
+    numero = random.randint(0, 100)
+    #numero = int(input('Digite um número: '))
+    listaNumeros.append(numero)
+
+listaNumeros = sorted(listaNumeros)
+print('Números da Lista = {}'.format(listaNumeros))
+
+#MAIOR VALOR
+qtdMaior = listaNumeros.count(max(listaNumeros))
+if(qtdMaior > 1):
+    print('Maior número da lista = {} , nas posições: '.format(max(listaNumeros)), end='')
+    contador = 0
+    for i in listaNumeros:
+        if(i == max(listaNumeros)):
+            print('{}'.format(contador), end=' ')
+        contador = contador + 1
+else:
+    print('Maior número da lista = {} , na posição {}'.format(max(listaNumeros), 4))
+
+#MENOR VALOR
+qtdMenor = listaNumeros.count(min(listaNumeros))
+if(qtdMenor > 1):
+    print('\nMenor número da lista = {} , nas posições: '.format(min(listaNumeros)), end='')
+    contadorMenor = 0
+    for i in listaNumeros:
+        if(i == min(listaNumeros)):
+            print('{}'.format(contadorMenor), end=' ')
+        contadorMenor = contadorMenor + 1
+else:
+    print('\nMenor número da lista = {} , na posição {}'.format(min(listaNumeros), 0))
 
 
 # Enunciado 79
-# 
+# Crie um programa onde o usuário possa digitar vários valores numéricos e cadastre-os em uma lista. Caso o número já exista lá dentro, ele não será adicionado.
+# No final, serão exibidos todos os valores únicos digitados, em ordem crescente.
+listaNumeros = []
+qtdNumeros = 0
 
+while True:
+    numero = int(input('Digite um número: '))
+    if(qtdNumeros == 0):
+        listaNumeros.append(numero)
+        qtdNumeros = qtdNumeros + 1
+    else: #qtdNumeros > 0
+        if numero in listaNumeros:
+            print('Valor duplicado! Não será adicionado...')
+        else: 
+            listaNumeros.append(numero)
+            listaNumeros = sorted(listaNumeros)
+            qtdNumeros = qtdNumeros + 1
+    opcao = input('Quer continuar? (S/N)')
+    opcao = opcao.upper()
+    while (opcao != 'S' and opcao != 'N'):
+        opcao = input('Quer continuar? (S/N)')
+        opcao = opcao.upper()
+    if(opcao == 'N'):
+        break
+    
+print('Você digitou os valores = {}'.format(listaNumeros))
 
 # Enunciado 80
-#
+# Crie um programa onde o usuário possa digitar cinco valores numéricos e cadastre-os em uma lista, já na posição correta de inserção(sem usar o sort())
+# No final, mostre a lista ordenada na tela
+listaNumeros = []
+
+for i in range(0,5):
+    numero = int(input('Digite um numero: '))
+    if(i == 0):
+        listaNumeros.append(numero)
+        print('Primeiro número da lista adicionado! ')
+    else: #i >= 1
+        contador = 0
+        while True:
+            if(numero <= listaNumeros[0]):
+                listaNumeros.insert(0, numero)
+                print('Adicionado na primeira posição !')
+                break
+            if(numero >= listaNumeros[len(listaNumeros)-1]):
+                listaNumeros.append(numero)
+                print('Adicionado na última posição !')
+                break
+            else:
+                if(numero > listaNumeros[contador]):
+                    if(numero <= listaNumeros[contador+1]):
+                        listaNumeros.insert(contador+1, numero)
+                        print('Adicionado na posição {}'.format(contador+1))
+                        break      
+        contador = contador + 1
+            
+print('Lista de números = {}'.format(listaNumeros))
 
 
 # Enunciado 81
-#
+# Crie um programa que vai ler vários números e colocar em uma lista.
+# Depois disso, mostre:
+# a) Quantos números foram digitados
+# b) A lista de valores ordenada de forma decrescente
+# c) Se o valor 5 foi digitado e está ou não na lista
+listaNumeros = []
+
+while True:
+    numero = int(input('Digite um número: '))
+    listaNumeros.append(numero)
+    listaNumeros = sorted(listaNumeros, reverse=True)
+
+    opcao = input('Deseja parar? (S/N)')
+    opcao = opcao.upper()
+    while(opcao != 'S' and opcao != 'N'):
+        opcao = input('Deseja parar? (S/N)')
+        opcao = opcao.upper()
+    
+    if(opcao == 'S'):
+        break
+
+# a)
+qtdNumeros = len(listaNumeros)
+print('Quantidade de números digitados = {}'.format(qtdNumeros))
+
+# b)
+print('Lista de números ordenada de forma descresente = {}'.format(listaNumeros))
+
+# c)
+if (5 in listaNumeros):
+    print('--- O 5 está presente na lista! ---')
+    contador = 0
+    for i in listaNumeros:
+        if(i == 5):
+            print('{}'.format(contador), end=' ')
+        contador = contador + 1 
+else:
+    print('--- O 5 NÃO está presente na lista! ---')
 
 
 # Enunciado 82
-#
+# Crie um programa que vai ler vários números e colocar em uma lista.
+# Depois disso, crie duas listas extras que vão conter apenas os valores pares e os valores ímpares digitados, respectivamente.
+# Ao final, mostre o conteúdo das três listas geradas
+listaOriginal = []
+listaPares = []
+listaImpares = []
+
+while True:
+    numero = int(input('Digite um número: '))
+    listaOriginal.append(numero)
+
+    opcao = input('Deseja continuar? (S/N)')
+    opcao = opcao.upper()
+    while(opcao != 'S' and opcao != 'N'):
+        opcao = input('Deseja continuar? (S/N)')
+        opcao = opcao.upper()
+    if(opcao == 'N'):
+        break
+
+for i in listaOriginal:
+    if(i%2 == 0): #PARES
+        listaPares.append(i)
+    else: #IMPARES
+        listaImpares.append(i)
+
+print('\nLista original = {}'.format(listaOriginal))
+print('Lista dos números pares = {}'.format(listaPares))
+print('Lista dos números ímpares = {}'.format(listaImpares))
 
 
 # Enunciado 83
+# Crie um programa onde o usuário digite uma expressão qualquer que use parênteses. 
+# Seu aplicativo deverá analisar se a expressão passada está com os parênteses abertos e fechados na ordem correta.
+expressao = input('Digite uma expressão: ')
+
+pilha = []
+
+for caracteres in expressao:
+    if(caracteres == '(' ):
+        pilha.append('(')
+    elif(caracteres == ')' ):
+        if(len(pilha) >= 1):
+            pilha.pop()
+        else:
+            pilha.append(')')
+            break
+
+if(len(pilha) >= 1):
+    print('--- Expressão errada !! --- ')
+else:
+    print('-- Expressão correta !! --')
+
+
+# Enunciado 84
+# Faça um programa que leia nome e peso de várias pessoas, guardando tudo em uma lista. No final, mostre:
+# a) Quantas pessoas foram cadastradas
+# b) Uma listagem com as pessoas mais pesadas
+# c) Uma listagem com as pessoas mais leves
+pessoas = []
+dados = []
+
+while True:
+    nome = input('\nDigite seu nome: ')
+    dados.append(nome)
+    peso = float(input('Digite seu peso: '))
+    dados.append(peso)
+    pessoas.append(dados[:])
+    dados.clear()
+
+    opcao = input('Deseja continuar? (S/N)')
+    opcao = opcao.upper()
+    if(opcao == 'N'):
+        break
+
+# a)
+qtdPessoasCadastradas = len(pessoas)
+print('Quantidade de pessoas cadastradas = {}'.format(qtdPessoasCadastradas))
+
+# b)
+pessoaMaisPesada = []
+contador1 = 0 
+for i in pessoas:
+    if(contador1 == 0):
+        pessoaMaisPesada.append(i[0])
+        maiorPeso = i[1]
+    else:
+        if(i[1] == maiorPeso):
+            pessoaMaisPesada.append(i[0])
+        elif(i[1] > maiorPeso):
+            maiorPeso = i[1]
+            qtdGordos = len(pessoaMaisPesada)
+            if(qtdGordos == 1):
+                pessoaMaisPesada.pop()
+            else:
+                for i in (0, qtdGordos):
+                    pessoaMaisPesada.pop()
+            pessoaMaisPesada.append(i[0])
+    contador1 = contador1 + 1
+
+print('O maior peso foi de {}Kg . Peso de {}'.format(maiorPeso, pessoaMaisPesada))
+
+# c)
+pessoaMaisLeve = []
+contador = 0
+for i in pessoas:
+    if(contador == 0):
+        pessoaMaisLeve.append(i[0])
+        menorPeso = i[1]
+    else:
+        if(i[1] == menorPeso):
+            pessoaMaisLeve.append(i[0])
+        elif(i[1] < menorPeso):
+            menorPeso = i[1]
+            qtdMagrelos = len(pessoaMaisLeve)
+            if(qtdMagrelos == 1):
+                pessoaMaisLeve.pop()
+            else:
+                for i in (0, qtdMagrelos):
+                    pessoaMaisLeve.pop()
+            pessoaMaisLeve.append(i[0])
+    contador = contador + 1
+
+print('O menor peso foi de {}Kg . Peso de {}'.format(menorPeso, pessoaMaisLeve))
+
+
+
+# Enunciado 85
+# Crie um programa onde o usuário possa digitar sete valores numéricos e cadastre-os em uma lista única que mantenha separados os valores pares e ímpares. 
+# No final, mostre os valores pares e ímpares em ordem crescente.
+listaNumerica = [[], []] #Lista é composta por duas listas internas: uma de pares e uma de ímpares
+
+for i in range(0,7):
+    valor = int(input('Digite o {}º valor: '.format(i+1) ) )
+    if(valor%2 == 0):
+        listaNumerica[0].append(valor)
+    elif (valor%2 == 1):
+        listaNumerica[1].append(valor)
+    
+
+print('Valores pares: {}'.format(sorted(listaNumerica[0])))
+print('Valores Ímpares: {}'.format(sorted(listaNumerica[1])))
+
+
+# Enunciado 86
+# Crie um programa que crie uma matriz de dimensão 3x3 e preencha com valores lidos pelo teclado.
+# No final, mostre a matriz na tela, com a formatação correta.
+listaMatriz = [[],[],[],[],[],[],[],[],[]]
+
+contador = 0
+for i in range(0,3):
+    for j in range(0,3):
+        valor = int(input('Digite um valor para [{}, {}]: '.format(i,j)))
+        listaMatriz[contador].append(valor)
+        contador = contador + 1
+
+print('---------------------------------')
+
+contador1 = 0
+for i in range(0,3):
+    for j in range(0,3):
+        if(contador1 == 2 or contador1 == 5):
+            print('{}'.format(listaMatriz[contador1]))
+        else:
+            print('{}'.format(listaMatriz[contador1]),end=' ')
+        contador1 = contador1 + 1
+
+
+# Enunciado 87
+# Aprimore o desafio anterior, mostrando no final:
+# a) A soma de todos os valores pares digitados.
+# b) A soma dos valores da terceira coluna
+# c) O maior valor da segunda linha
+listaMatriz = [[],[],[],[],[],[],[],[],[]]
+
+#INSERÇÃO DE VALORES
+contador = 0
+for i in range(0,3):
+    for j in range(0,3):
+        valor = int(input('Digite um valor para [{}, {}]: '.format(i,j)))
+        listaMatriz[contador].append(valor)
+        contador = contador + 1
+
+print('---------------------------------')
+#EXIBIÇÃO DA MATRIZ
+contador1 = 0
+for i in range(0,3):
+    for j in range(0,3):
+        if(contador1 == 2 or contador1 == 5):
+            print('{}'.format(listaMatriz[contador1]))
+        else:
+            print('{}'.format(listaMatriz[contador1]),end=' ')
+        contador1 = contador1 + 1
+
+print('\n---------------------------------')
+contador2 = 0
+somaPares = 0
+somaTerceiraColuna = 0
+maiorValorSegundaLinha = 0
+
+for i in range(0,3):
+    for j in range(0,3):
+        numeroAtual = listaMatriz[contador2][0]
+        #a)
+        if(numeroAtual % 2 == 0):
+            somaPares = somaPares + numeroAtual 
+        #b)
+        if(j == 2):
+            somaTerceiraColuna = somaTerceiraColuna + numeroAtual
+        #c)
+        if(i == 1):
+            if(numeroAtual > maiorValorSegundaLinha):
+                maiorValorSegundaLinha = numeroAtual
+        contador2 = contador2 + 1
+    
+#a)
+print('A soma de todos valores pares digitados = {}'.format(somaPares))
+
+#b)
+print('A soma dos valores da terceira coluna = {}'.format(somaTerceiraColuna))
+
+#c)
+print('O maior valor da segunda linha = {}'.format(maiorValorSegundaLinha))
+
+
+# Enunciado 88
+# Faça um programa que ajude um jogador da MEGA SENA a criar palpites. 
+# O programa vai perguntar quantos jogos serão gerados e vai sortear 6 números entre 1 e 60 para cada jogo, cadastrando tudo em uma lista composta.
+from random import randint
+import time
+
+listaPalpites = []
+#Será uma lista com qtdJogos listas e cada lista interna tem 6 elementos
+jogo = []
+
+qtdJogos = int(input('Quantos jogos serão jogados?: '))
+
+for i in range(0, qtdJogos):
+    for j in range(0,6):
+        numero = randint(1,60)
+        if numero not in jogo:
+            jogo.append(numero)
+    listaPalpites.append(jogo[:])
+    jogo.clear()
+
+for i in range(qtdJogos):
+    print('{}º jogo: {}'.format(i+1, listaPalpites[i]))
+    time.sleep(1)
+
+print('----- BOA SORTE ! -----')
+
+
+# Enunciado 89
+# Crie um programa que leia nome e duas notas de vários alunos e guarde tudo em uma lista composta.
+# No final, mostre um boletim contendo a média de cada um e permita que o usuário possa mostrar as notas de cada aluno individualmente.
+# Enunciado 89
+# Crie um programa que leia nome e duas notas de vários alunos e guarde tudo em uma lista composta.
+# No final, mostre um boletim contendo a média de cada um e permita que o usuário possa mostrar as notas de cada aluno individualmente.
+ficha = []
+
+while True:
+    nome = input('Nome: ')
+    nota1 = float(input('Nota 1: '))
+    nota2 = float(input('Nota 2: '))
+    media = (nota1 + nota2)/2
+    ficha.append([nome, [nota1, nota2], media])
+
+    resp = input('Deseja continuar? (S/N)')
+    resp = resp.upper()
+    if (resp == 'N'):
+        break
+
+print('Num      Nome     Média')
+
+contador = 0
+for i in ficha:
+    print('{}     {}     {}'.format(contador, ficha[contador][0], ficha[contador][2]))
+
+
+while True:
+    print('-------------------------')
+    opcao = int(input('Mostrar notas de qual aluno? (999 interrompe): '))
+    if (opcao == 999):
+        print('--- FINALIZANDO... ---')
+        break
+    if (opcao <= len(ficha) -1):
+        print('Notas de {} são {}'.format(ficha[opcao][0], ficha[opcao][1]))
+
+print('--- VOLTE SEMPRE ---')
+
+
+# Enunciado 90
+#
+
+
+# Enunciado 91
+#
+
+# Enunciado 92
+#
+
+
+# Enunciado 93
+#
+
+
+# Enunciado 94
 #
