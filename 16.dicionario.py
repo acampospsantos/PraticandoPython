@@ -41,3 +41,51 @@ for i in elemento.itens():
 print(elemento.keys()) #Lista com o nome das chaves
 for i in elemento.keys():
     print(i)
+
+
+#Declaração que dados é um dicionário
+dados = dict()
+
+#Podemos inserir valores de duas formas:
+# I)
+dados = { 'nome':'Pedro', 'idade':25 }
+
+# II)
+dados = { 'nome': 'Pedro', 
+         'idade': 25
+}
+
+print(dados['nome'])
+print(dados['idade'])
+
+#Criei o elemento sexo que recebe M
+dados['sexo'] = 'M'
+
+# Pra eliminar um elemento + estrutura
+del dados['idade']
+
+
+print(dados.values())
+#Vai imprimir = o valor das chaves
+
+print(dados.keys())
+# Vai imprimir as chaves de elemento = 'nome' e 'sexo'
+
+print(dados.items())
+# Vai imprimir as chaves e os valores das chaves
+
+print('O sujeito {} tem {} anos!'.format(dados['nome'], dados['idade']))
+
+for chave in dados.keys():
+    print(chave)
+
+for k, v in dados.items():
+    print('{} = {}'.format(k , v))
+
+dados['nome'] = 'Anderson'
+dados['idade'] = 24
+
+#Se eu quiser adicionar uma nova chave:
+dados['peso'] = 92
+
+print(dados)
