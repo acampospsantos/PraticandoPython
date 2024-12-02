@@ -2175,18 +2175,214 @@ print('--- VOLTE SEMPRE ---')
 # Enunciado 90
 # Faça um programa que leia o nome e média de um aluno, guardando também a situação em um dicionário.
 # No final, mostre o conteúdo da estrutura na tela
+aluno = {}
+
+aluno['nome'] = input('Digite o nome do aluno: ')
+aluno['media'] = int(input('Digite a média do aluno: '))
+if(aluno['media'] >= 7):
+    aluno['situacao'] = 'Aprovado'
+else:
+    aluno['situacao'] = 'Reprovado'
+
+print('Nome é = {}'.format(aluno['nome']))
+print('Media é = {}'.format(aluno['media']))
+print('Situação é = {}'.format(aluno['situacao']))
 
 
 # Enunciado 91
-#
+# Crie um programa onde 4 jogadores joguem um dado e tenham resultados aleatórios.
+# Guarde esses resultados em um dicionário. 
+# No final, coloque esse dicionário em ordem, sabendo que o vencedor tirou o maior número no dado.
+import random
+
+jogadores = {}
+lista = []
+
+for i in range(0,4):
+    jogadores['nome'] = input('Digite seu nome: ')
+    jogadores['dado'] = random.randint(1,6)
+    lista.append(jogadores.copy())
+
+contador = 0
+for i in lista:
+    if(contador == 0):
+        maiorDado = jogadores['dado']
+        vencedor = jogadores['nome']
+    else:
+        if (jogadores['dado'] > maiorDado):
+            maiorDado = jogadores['dado']
+            vencedor = jogadores['nome']
+    contador = contador + 1
+
+print(lista)
+
+print('Vencedor {}, valor do dado = {}'.format(jogadores['nome'], jogadores['dado']))
 
 # Enunciado 92
-#
+# Crie um programa que leia nome, ano de nascimento e carteira de trabalho e cadastre-os(com idade) em um dicionário se por acaso a CTPS for diferente de zero, o dicionário receberá também ano de contratação e o salário.
+# Calcule e acrescente, além da idade, com quantos anos a pessoa vai se aposentar.
+trabalhadores = {}
+lista = []
+
+trabalhadores['nome'] = input('Digite seu nome: ')
+trabalhadores['anoNascimento'] = int(input('Digite o seu ano de nascimento: '))
+trabalhadores['ctps'] = int(input('Trabalha a quanto tempo(em anos): '))
+if(trabalhadores['ctps'] != 0):
+    trabalhadores['anoContratacao'] = int(input('Digite o ano de contratação: '))
+    trabalhadores['salario'] = float(input('Digite o seu salário: '))
+    tempoContribuicao = 2024 - trabalhadores['anoContratacao']
+    tempoRestante = 35 - tempoContribuicao
+    trabalhadores['idade'] = 2024 - trabalhadores['anoNascimento']
+    trabalhadores['idadeAposentadoria'] = trabalhadores['idade'] + tempoRestante
+
+print(trabalhadores)
+print('Nome tem o valor {}'.format(trabalhadores['nome']))
+print('Idade tem o valor {}'.format(trabalhadores['anoNascimento']))
+print('CTPS tem o valor {}'.format(trabalhadores['ctps']))
+if (trabalhadores['ctps'] != 0):
+    print('Ano de contratação tem o valor {}'.format(trabalhadores['anoContratacao']))
+    print('Salário tem o valor {}'.format(trabalhadores['salario']))
+    print('Aposentadoria tem o valor {}'.format(trabalhadores['idadeAposentadoria']))
 
 
 # Enunciado 93
-#
+# Crie um programa que gerencie o aproveitamento de um jogador de futebol. O programa vai ler o nome do jogador e quantas partidas ele jogou. 
+# Depois vai ler a quantidade de gols feitos em cada partida. No final, tudo será guardado em um dicionário, incluindo o total de gols feitos durante o campeonato.
+jogador = {}
+listaGols = []
+
+jogador['nome'] = input('Digite o nome do jogador: ')
+jogador['partidas'] = int(input('Digite a quantidade de partidas jogadas: '))
+
+partidasJogadas = jogador['partidas']
+
+totalGols = 0
+for i in range(partidasJogadas):
+    golsPartida = int(input('Quantos gols na partida {}: '.format(i)))
+    totalGols = totalGols + golsPartida
+    listaGols.append(golsPartida)
+
+jogador['gols'] = listaGols
+jogador['total'] = totalGols
+
+
+# Exibição Resultados
+print('------------------------------')
+print(jogador)
+print('------------------------------')
+
+print('O campo nome tem o valor {}'.format(jogador['nome']))
+print('O campo gols tem o valor {}'.format(jogador['gols']))
+print('O campo total tem o valor {}'.format(jogador['total']))
+print('------------------------------')
+
+print('O jogador {} jogou {} partidas.'.format(jogador['nome'], jogador['partidas']))
+for i in range(jogador['partidas']):
+    print('    ==> Na partida {}, fez {} gols'.format(i, jogador['gols'][i]))
+
+print('Foi um total de {} gols'.format(jogador['total']))
 
 
 # Enunciado 94
-#
+# Crie um programa que leia nome,sexo e idade de várias pessoas, guardando os dados de cada pessoa em um dicionário e todos os dicionários em uma lista.
+# No final, mostre:
+# a) Quantas pessoas foram cadastradas 
+# b) A média de idade do grupo
+# c) Uma lista com todas as mulheres
+# d) Uma lista com todas as pessoas com idade acima da média
+listaPessoas = []
+
+while True:
+    dicionarioPessoas = {}
+    print('')
+    dicionarioPessoas['nome'] = input('Digite o nome: ')
+    dicionarioPessoas['sexo'] = input('Digite o sexo (F/M): ')
+    dicionarioPessoas['idade'] = int(input('Digite a idade: '))
+    listaPessoas.append(dicionarioPessoas)
+    opcao = input('Deseja continuar? : ')
+    opcao = opcao.upper()
+    if(opcao == 'N'):
+        break
+
+
+#EXIBIÇÃO DE RESULTADOS:
+# a)
+qtdPessoasCadastradas = len(listaPessoas)
+print('\nQuantidade de pessoas cadastradas = {}'.format(qtdPessoasCadastradas))
+
+# b)
+somaTotalIdade = 0
+for i in range(len(listaPessoas)):
+    somaTotalIdade = somaTotalIdade + listaPessoas[i]['idade']
+mediaIdade = somaTotalIdade / qtdPessoasCadastradas
+print('A média de idade do grupo = {}'.format(mediaIdade))
+
+# c)
+qtdMulheres = 0
+listaMulheres = []
+for i in range (len(listaPessoas)):
+    if(listaPessoas[i]['sexo'] == 'F'):
+        qtdMulheres = qtdMulheres + 1
+        listaMulheres.append(listaPessoas[i]['nome'])
+print('Quantidade de mulheres presentes = {}'.format(qtdMulheres))
+print(listaMulheres)
+
+# d)
+qtdPessoasAcimaMedia = 0
+listaPessoasAcimaMedia = []
+for i in range(qtdPessoasCadastradas):
+    if(listaPessoas[i]['idade'] > mediaIdade):
+        qtdPessoasAcimaMedia = qtdPessoasAcimaMedia + 1
+        listaPessoasAcimaMedia.append(listaPessoas[i]['nome'])
+print('Quantidade de pessoas com idade acima da média = {}'.format(qtdPessoasAcimaMedia))
+print(listaPessoasAcimaMedia)
+
+print('<< ENCERRADO >>')
+
+
+# Enunciado 95
+# Aprimore o desafio 93 para que ele funcione com vários jogadores, incluindo um sistema de visualização de detalhes de aproveitamento de cada jogador.
+listaJogadores = []
+
+while True:
+    jogador = {}
+    listaGols = []
+
+    jogador['nome'] = input('\nDigite o nome do jogador: ')
+    jogador['partidas'] = int(input('Digite a quantidade de partidas jogadas: '))
+
+    partidasJogadas = jogador['partidas']
+
+    totalGols = 0
+    for i in range(partidasJogadas):
+        golsPartida = int(input('Quantos gols na partida {}: '.format(i)))
+        totalGols = totalGols + golsPartida
+        listaGols.append(golsPartida)
+
+    jogador['gols'] = listaGols
+    jogador['total'] = totalGols
+
+    listaJogadores.append(jogador)
+
+    opcao = input('Deseja continuar? [S/N]: ')
+    opcao = opcao.upper()
+    if (opcao == 'N'):
+        break
+
+# EXIBIÇÃO
+print('---------------------')
+print('cod nome         gols            total')
+print('---------------------')
+for i in range(len(listaJogadores)):
+    print(' {} {}           {}             {}'.format(i, listaJogadores[i]['nome'], listaJogadores[i]['gols'], listaJogadores[i]['total']))
+print('---------------------')
+while True:
+    dadosJogador = int(input('Mostrar dados de qual jogador? : '))
+    if (dadosJogador < 0 or dadosJogador > len(listaJogadores)-1):
+        break
+    print('\n--- LEVANTAMENTO DO JOGADOR {}'.format(listaJogadores[dadosJogador]['nome']))
+    for i in range(listaJogadores[dadosJogador]['partidas']):
+        print('No jogo {} fez {} gols.'.format(i, listaJogadores[dadosJogador]['gols'][i]))
+    print('---------------------')
+
+print('<< ACABOU >>')
