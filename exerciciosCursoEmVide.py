@@ -2178,9 +2178,11 @@ print('--- VOLTE SEMPRE ---')
 aluno = {}
 
 aluno['nome'] = input('Digite o nome do aluno: ')
-aluno['media'] = int(input('Digite a média do aluno: '))
+aluno['media'] = float(input('Digite a média do aluno: '))
 if(aluno['media'] >= 7):
     aluno['situacao'] = 'Aprovado'
+elif(aluno['media'] > 5):
+    aluno['situacao'] = 'Recuperação'
 else:
     aluno['situacao'] = 'Reprovado'
 
@@ -2194,50 +2196,58 @@ print('Situação é = {}'.format(aluno['situacao']))
 # Guarde esses resultados em um dicionário. 
 # No final, coloque esse dicionário em ordem, sabendo que o vencedor tirou o maior número no dado.
 import random
+import time
 
-jogadores = {}
 lista = []
 
 for i in range(0,4):
+    jogadores = {}
     jogadores['nome'] = input('Digite seu nome: ')
     jogadores['dado'] = random.randint(1,6)
-    lista.append(jogadores.copy())
+    lista.append(jogadores)
 
-contador = 0
-for i in lista:
-    if(contador == 0):
-        maiorDado = jogadores['dado']
-        vencedor = jogadores['nome']
+print('')
+
+for i in range(0,4):
+    time.sleep(1)
+    print('{} tirou {} no dado.'.format(lista[i]['nome'], lista[i]['dado']))
+
+for i in range(len(lista)):
+    if(i == 0):
+        maiorDado = lista[i]['dado']
+        vencedor = lista[i]['nome']
     else:
-        if (jogadores['dado'] > maiorDado):
-            maiorDado = jogadores['dado']
-            vencedor = jogadores['nome']
-    contador = contador + 1
+        if (lista[i]['dado'] > maiorDado):
+            maiorDado = lista[i]['dado']
+            vencedor = lista[i]['nome']
 
-print(lista)
+print(sorted(lista))
 
-print('Vencedor {}, valor do dado = {}'.format(jogadores['nome'], jogadores['dado']))
+print('Vencedor {}, valor do dado = {}'.format(vencedor, maiorDado))
 
 # Enunciado 92
 # Crie um programa que leia nome, ano de nascimento e carteira de trabalho e cadastre-os(com idade) em um dicionário se por acaso a CTPS for diferente de zero, o dicionário receberá também ano de contratação e o salário.
 # Calcule e acrescente, além da idade, com quantos anos a pessoa vai se aposentar.
+from datetime import datetime
+
 trabalhadores = {}
 lista = []
 
 trabalhadores['nome'] = input('Digite seu nome: ')
 trabalhadores['anoNascimento'] = int(input('Digite o seu ano de nascimento: '))
 trabalhadores['ctps'] = int(input('Trabalha a quanto tempo(em anos): '))
+trabalhadores['idade'] = datetime.now().year - trabalhadores['anoNascimento']
 if(trabalhadores['ctps'] != 0):
     trabalhadores['anoContratacao'] = int(input('Digite o ano de contratação: '))
     trabalhadores['salario'] = float(input('Digite o seu salário: '))
-    tempoContribuicao = 2024 - trabalhadores['anoContratacao']
+    tempoContribuicao = datetime.now().year - trabalhadores['anoContratacao']
     tempoRestante = 35 - tempoContribuicao
-    trabalhadores['idade'] = 2024 - trabalhadores['anoNascimento']
     trabalhadores['idadeAposentadoria'] = trabalhadores['idade'] + tempoRestante
 
+#EXIBIÇÃO VALORES
 print(trabalhadores)
 print('Nome tem o valor {}'.format(trabalhadores['nome']))
-print('Idade tem o valor {}'.format(trabalhadores['anoNascimento']))
+print('Idade tem o valor {}'.format(trabalhadores['idade']))
 print('CTPS tem o valor {}'.format(trabalhadores['ctps']))
 if (trabalhadores['ctps'] != 0):
     print('Ano de contratação tem o valor {}'.format(trabalhadores['anoContratacao']))
@@ -2296,7 +2306,13 @@ while True:
     dicionarioPessoas = {}
     print('')
     dicionarioPessoas['nome'] = input('Digite o nome: ')
-    dicionarioPessoas['sexo'] = input('Digite o sexo (F/M): ')
+    sexo = input('Digite o sexo (F/M): ')
+    sexo = sexo.upper()
+    while (sexo != 'M' and sexo != 'F'):
+        print('Sexo inválido!')
+        sexo = input('Digite o sexo (F/M): ')
+        sexo = sexo.upper()
+    dicionarioPessoas['sexo'] = sexo
     dicionarioPessoas['idade'] = int(input('Digite a idade: '))
     listaPessoas.append(dicionarioPessoas)
     opcao = input('Deseja continuar? : ')
