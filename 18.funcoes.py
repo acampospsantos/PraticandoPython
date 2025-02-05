@@ -40,3 +40,25 @@ def divisao(k, j):
 resultadoDivisao = divisao(c, d)
 print(c , ' dividido por ', d, ' = ',  resultadoDivisao)
 
+
+# Função com parâmetros indefinidos
+def contador(* num):
+    tamanho = len(num)
+    print('Parâmetros = {} , Qtd de Parâmetros = {}'.format(num, tamanho))
+
+contador(5, 8, 10, 20)
+contador(2)
+contador(19 , 20, 30, 51, 80, 90, 100)
+
+
+# Dobrando os valores de uma lista
+def dobra(lista):
+    pos = 0
+    while(pos < len(lista)):
+        lista[pos] = lista[pos] * 2
+        pos = pos + 1
+    print(lista)
+
+lista = [10, 20, 30, 40, 50]
+
+dobra(lista)
