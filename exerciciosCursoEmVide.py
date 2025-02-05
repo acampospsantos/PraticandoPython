@@ -871,7 +871,7 @@ elif(opcaoJogador == 'Tesoura'):
 
     
 # Enunciado 46
-# Faça um programa que mpstre na tela uma contagem regressiva para o estouro de fogos de artifício, indo de 10 até 0, com uma pausa de um segundo entre eles.
+# Faça um programa que mostre na tela uma contagem regressiva para o estouro de fogos de artifício, indo de 10 até 0, com uma pausa de um segundo entre eles.
 import time
 
 print('----- CONTAGEM REGRESSIVA -----')
@@ -2402,3 +2402,216 @@ while True:
     print('---------------------')
 
 print('<< ACABOU >>')
+
+
+# Enunciado 96
+# Faça um programa que tenha uma função chamada área(), que receba as dimensões de um terreno retangular(largura e comprimento) e mostre a área do terreno.
+def area(a, b):
+    calculo = a * b
+    print('A área de um terreno {} x {} = {}m²'.format(a, b, calculo))
+    
+print(' Controle de Terrenos')
+print('----------------------')
+
+largura = float(input('LARGURA (m): '))
+comprimento = float(input('COMPRIMENTO (m): '))
+
+print('----------------------')
+area(largura,comprimento)
+
+
+# Enunciado 97
+# Faça um programa que tenha uma função chamada escreva(), que receba um texto qualquer como parâmetro e mostre uma mensagem com tamanho adaptável.
+#Ex:
+# escreva('Olá, Mundo!')
+def escreva(palavra):
+    qtdCaracteres = len(palavra)+4
+    print('~' * qtdCaracteres)
+    print('  {}'.format(palavra))
+    print('~' * qtdCaracteres)
+
+while True:
+    palavra = input('Digite uma palavra: ')
+    escreva(palavra)
+
+    option = input('Deseja escrever outra palavra? (S/N) : ')
+    option = option.upper()
+    while(option != 'S' and option != 'N'):
+        print('Opção Inválida!')
+        option = input('Deseja escrever outra palavra? (S/N) : ')
+    
+    if(option == 'N'):
+        break
+
+
+# Enunciado 98
+# Faça um programa que tenha uma função chamada contador(), que receba três parâmetros: ínicio, fim e passo, e realize a contagem.
+# Seu programa tem que realizar três contagens através da função criada:
+# a) de 1 até 10, de 1 em 1
+# b) de 10 até 0, de 2 em 2
+# c) uma contagem personalizada
+import time
+
+def contador(inicio, fim, passo):
+    if(inicio < fim):
+        i = inicio
+        while(i <= fim):
+            print('{}'.format(i), end=' ')
+            i = i + passo
+    elif (inicio > fim):
+        j = inicio
+        while(j >= fim):
+            print('{}'.format(j), end=' ')
+            j = j - passo
+
+
+print('Contagem de 1 até 10 de 1 em 1')
+i=1
+while(i < 11):
+    #time.sleep(1)
+    print('{}'.format(i),end=' ')
+    i = i + 1
+print('Fim!')
+
+print('-----------------------------')
+
+print('Contagem de 10 até 0 de 2 em 2')
+j = 10
+while(j >= 0):
+    #time.sleep(1)
+    print('{}'.format(j), end=' ')
+    j = j - 2
+print('Fim!')
+
+print('-----------------------------')
+
+print('Agora é sua vez de personalizar a contagem')
+inicio = int(input('Início: '))
+fim = int(input('Fim: '))
+passo = int(input('Passo: '))
+
+contador(inicio, fim , passo)
+print('Fim!')
+
+
+# Enunciado 99
+# Faça um programa que tenha uma função chamada maior(), que receba vários parâmetros com valores inteiros.
+# Seu programa tem que analisar todos os valores e dizer qual deles é o maior.
+import time
+
+def maior(* núm):
+    cont = 0
+    maior = 0
+    print('-' * 30)
+    print('\nAnalisando os valores passados... ')
+    for valor in núm:
+        print('{} '.format(valor), end='', flush=True)
+        time.sleep(0.3)
+        if (cont == 0):
+            maior = valor
+        else:
+            if(valor > maior):
+                maior = valor
+        cont = cont + 1
+    print('Foram informados {} valores ao todo.'.format(cont))
+    print('O maior valor informado foi {}'.format(maior))
+
+# Programa principal
+maior(2, 9, 4, 5, 7, 1)
+#maior(4, 7, 0)
+#maior(10, 2)
+#maior()
+
+
+# Enunciado 100
+# Faça um programa que tenha uma lista chamada números e duas funções chamadas sorteia() e somaPar(). A primeira função vai sortear 5 números e vai colocá-los dentro da lista
+# a segunda função vai mostrar a soma entre todos os valores PARES sorteados pela função anterior.
+import random
+
+listaNumeros = []
+listaPares = []
+
+def sorteia():
+    for i in range(5):
+        numero = random.randint(0,100)
+        listaNumeros.append(numero)
+    print('Lista dos números sorteados = {}'.format(listaNumeros))
+
+def somaPar():
+    soma = 0
+    for i in range(5):
+        if(listaNumeros[i] %2 == 0):
+            listaPares.append(listaNumeros[i])
+            soma = soma + listaNumeros[i]
+    print('Lista de números pares {}'.format(listaPares))
+    print('A soma dos pares da lista foi = {}'.format(soma))
+
+sorteia()
+somaPar()
+
+
+# Enunciado 101
+# Crie um programa que tenha uma função chamada voto() que vai receber como parâmetro o ano de nascimento de uma pessoa, retornando um valor literal
+# indicando se uma pessoa tem voto NEGADO, OPCIONAL ou OBRIGATÓRIO nas eleições 
+from datetime import date
+def voto(anoNascimento):
+    idade = date.today() - anoNascimento
+    if(idade >= 18):
+        situacao = 'OBRIGATÓRIO'
+    elif(idade < 16):
+        situacao = 'NEGADO'
+    else:
+        situacao = 'OPCIONAL'
+    return situacao
+
+anoNascimento = int(input('Digite seu ano de nascimento: '))
+idade = date.today() - anoNascimento
+situacao = voto(anoNascimento)
+print('A situação do usuário de {} anos é = {}'.format(idade, situacao))
+
+
+# Enunciado 102
+# Crie um programa que tenha uma função fatorial() que receba dois parâmetros: o primeiro que indique o número a calcular e o outro chamado show(), que será um valor lógico(opcional)
+# indicando se será mostrado ou não na tela o processo de cálculo fatorial.
+lista = []
+def fatorial(numero, show=False):
+    fatorial = 1
+    for i in range(numero, 0, -1):
+        if show:
+            print(i, end='')
+            if i > 1:
+                print(' x ', end='')
+            else:
+                print(' = ', end='')
+        fatorial = fatorial * i
+    return fatorial
+
+resp = fatorial(5, show= False)
+print(resp) 
+
+
+# Enunciado 103
+# Faça um programa que tenha uma função chamada ficha(), que receba dois parâmetros opcionais: o nome de um jogador e quantos gols ele marcou.
+# O programa deverá ser capaz de mostrar a ficha do jogador, mesmo que algum dado não tenha sido informado corretamente.
+def ficha(jog='<desconhecido>', gol=0):
+    print('O jogador {} fez {} gol(s) no campeonato.'.format(jog, gol))
+
+nome = input('Nome do jogador: ')
+gols = input('Número de gols: ')
+
+if gols.isnumeric():
+    gols = int(gols)
+else:
+    g = 0
+if nome.strip() == '':
+    ficha(gol=gols)
+else:
+    ficha(nome, gols)
+
+
+# Enunciado 104
+#
+
+
+# Enunciado 105
+# 
