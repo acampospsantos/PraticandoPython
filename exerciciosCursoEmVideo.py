@@ -2371,7 +2371,7 @@ while True:
 
     totalGols = 0
     for i in range(partidasJogadas):
-        golsPartida = int(input('Quantos gols na partida {}: '.format(i)))
+        golsPartida = int(input('Quantos gols na partida {}: '.format(i+1)))
         totalGols = totalGols + golsPartida
         listaGols.append(golsPartida)
 
