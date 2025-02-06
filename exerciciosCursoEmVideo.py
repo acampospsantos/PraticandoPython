@@ -2452,46 +2452,48 @@ while True:
 # c) uma contagem personalizada
 import time
 
-def contador(inicio, fim, passo):
+def contagemPersonalizada(inicio, fim, passo):
+    if(passo < 0 and inicio < fim):
+        print('Não é possível calcular!')
+        return #quebra a funcao
+    if (passo == 0):
+        print('Não é possível calcular!')
+        return #quebra a funcao
+
     if(inicio < fim):
-        i = inicio
-        while(i <= fim):
-            print('{}'.format(i), end=' ')
-            i = i + passo
-    elif (inicio > fim):
-        j = inicio
-        while(j >= fim):
-            print('{}'.format(j), end=' ')
-            j = j - passo
+        for i in range(inicio, fim+1, passo):
+            print('{} '.format(i), end=' ')
+           
+    elif(inicio > fim):
+        if(passo > 0):
+            passo = -passo
+            for i in range(inicio, fim-1, passo):
+                print('{} '.format(i), end=' ')
+                
+        else:
+            for i in range(inicio, fim-1, passo):
+                print('{} '.format(i), end=' ')
+                
 
+print('------------------')
+for i in range(1,11):
+    print('{} '.format(i),end=' ')
+    
 
-print('Contagem de 1 até 10 de 1 em 1')
-i=1
-while(i < 11):
-    #time.sleep(1)
-    print('{}'.format(i),end=' ')
-    i = i + 1
-print('Fim!')
+print('\n------------------')
 
-print('-----------------------------')
+for i in range(10, -1, -2):
+    print('{} '.format(i), end=' ')
+    
 
-print('Contagem de 10 até 0 de 2 em 2')
-j = 10
-while(j >= 0):
-    #time.sleep(1)
-    print('{}'.format(j), end=' ')
-    j = j - 2
-print('Fim!')
+print('\n------------------')
 
-print('-----------------------------')
-
-print('Agora é sua vez de personalizar a contagem')
+print('Agora é sua vez de personalizar a contagem!')
 inicio = int(input('Início: '))
 fim = int(input('Fim: '))
 passo = int(input('Passo: '))
 
-contador(inicio, fim , passo)
-print('Fim!')
+contagemPersonalizada(inicio, fim, passo)
 
 
 # Enunciado 99
@@ -2521,6 +2523,15 @@ maior(2, 9, 4, 5, 7, 1)
 #maior(4, 7, 0)
 #maior(10, 2)
 #maior()
+
+# Outra forma de fazer
+def maior(* num):
+    print('Analisando os valores passados...')
+    print(num)
+    maior = max(num)
+    print('Maior elemento = {}'.format(maior))
+
+maior(10, 100, 20, 40, 50)
 
 
 # Enunciado 100
@@ -2602,7 +2613,7 @@ gols = input('Número de gols: ')
 if gols.isnumeric():
     gols = int(gols)
 else:
-    g = 0
+    gols = 0
 if nome.strip() == '':
     ficha(gol=gols)
 else:
@@ -2610,8 +2621,101 @@ else:
 
 
 # Enunciado 104
-#
+# Crie um programa que tenha a função leiaInt(), que vai funcionar de forma semelhante à função input() do Python, só que fazendo a validação para aceitar apenas um valor numérico.
+# Ex: 
+#n = leiaInt('Digite um n)
+def leiaInt(msg):
+    ok = False 
+    valor = 0
+    while True:
+        n = input(msg)
+        if n.isnumeric():
+            valor = int(n)
+            ok = True
+        else:
+            print('ERRO! Digite um número inteiro válido.')
+        if ok:
+            break
+    return valor
+
+n = leiaInt('Digite um número: ')
+print('Você acabou de digitar o número {}'.format(n))
 
 
 # Enunciado 105
-# 
+# Faça um programa que tenha uma função notas() que pode receber várias notas de alunos e vai retornar um dicionário com as seguintes informações:
+# - Quantidade de notas
+# - A maior nota
+# - A menor nota
+# - A média da turma
+# - A situação (opcional)
+# Adicione também as docstrings da função.
+def notas(*n, sit = False):
+    """
+    -> Função para analisar notas e situações de vários alunos.
+    :param n: uma ou mais notas dos alunos(aceita várias)
+    :param sit: valor opcional, indicando se deve ou não adicionar a situação
+    :return: dicionário com várias informações sobre a situação da turma.
+    """
+    r = dict()
+    r['total'] = len(n)
+    r['maior'] = max(n)
+    r['menor'] = min(n)
+    r['media'] = sum(n)/len(n)
+    if sit:
+        if r['media'] >= 7:
+            r['situacao'] = 'BOA'
+        elif r['media'] >= 5:
+            r['situacao'] = 'RAZOAVEL'
+        else:
+            r['situacao'] = 'RUIM'
+    return r
+
+# Programa Principal
+resp = notas(5.5, 2.5, 1.5, sit=True)
+print(resp)
+help(notas)
+
+
+# Enunciado 106
+# Faça um mini-sistema que utilize o Interactive Help do Python. O usuário vai digitar o comando e o manual vai aparecer.
+# Quando o usuário digitar a palavra 'FIM', o programa se encerrará.
+# OBS: Use cores
+
+
+# Enunciado 107
+# Crie um módulo chamado moeda.py que incorporadas aumentar(), diminuir() e metade()
+# Faça também um programa que importe esse módulo e use algumas dessas funções
+
+
+# Enunciado 108
+# Adapte o código do desafio 107, criando uma função adicional chamada moeda() que consiga mostrar os valores como um valor monetário formatado.
+
+
+# Enunciado 109
+# Modifique as funções que foram criadas no desafio 107 para que elas aceitem um parâmetro a mais, informando se o valor retornado por elas vai ser ou não formatado pela função moeda(). desenvolvido no desafio 108.
+
+
+# Enunciado 110
+# Adicione ao módulo moeda.py criado nos desafios anteriores, uma função chamada resumo(), que mostre na tela algumas informações geradas pelas funções que já temos no módulo criado até aqui.
+
+
+# Enunciado 111
+# Crie um pacote chamado utilidadesCev que tenha dois módulos internos chamados moeda e dado.
+# Transfira todas as funções utilizadas nos desafios 107, 108 e 109 para o primeiro pacote e mantenha tudo funcionando.
+
+
+# Enunciado 112
+# Dentro do pacote utilidadesCev que criamos no desafio 111, temos um módulo chamado dado. Crie uma função chamada leiaDinheiro() que seja capaz de funcionar como a função input(),
+# mas com uma validação de dados para aceitar apenas valores que sejam monetários.
+
+
+# Enunciado 113
+# Reescreva a função leiaInt() que fizemos no desafio 104, incluindo agora a possibilidade da digitação de um número de tipo inválido.
+# Aproveite e crie também uma função leiaFloat() com a mesma funcionalidade.
+
+
+
+# Enunciado 114
+#
+
