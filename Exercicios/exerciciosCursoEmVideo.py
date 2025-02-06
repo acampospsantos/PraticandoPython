@@ -2750,6 +2750,7 @@ else:
     print('Consegui acessar o site Pudim com sucesso!')
     #print(site.read())
 
+
 # Enunciado 115
 # Crie um pequeno sistema modularizado que permita cadastrar pessoas pelo seu nome e idade em um arquivo de texto simples.
 # O sistema só vai ter duas opções: cadastrar e listar todas as pessoas cadastradas.
