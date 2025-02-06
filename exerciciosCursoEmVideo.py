@@ -2713,9 +2713,41 @@ help(notas)
 # Enunciado 113
 # Reescreva a função leiaInt() que fizemos no desafio 104, incluindo agora a possibilidade da digitação de um número de tipo inválido.
 # Aproveite e crie também uma função leiaFloat() com a mesma funcionalidade.
+def leiaInt():
+    while True:
+        try:
+            numInteiro = int(input('Digite um número inteiro: '))
+        except Exception:
+            print('## ERRO: DIGITE UM NÚMERO INTEIRO VÁLIDO!! ##')
+        else: 
+            return numInteiro #break
 
+def leiaFloat():
+    while True: 
+        try:
+            numReal = float(input('Digite um número real: '))
+        except Exception:
+            print('## ERRO: DIGITE UM NUMÉRO REAL VÁLIDO ##')
+        else:
+            return numReal #break
+
+
+numInteiro = leiaInt()
+numQuebrado = leiaFloat()
+print('Você digitou um número inteiro {} e um número real {}'.format(numInteiro, numQuebrado))
 
 
 # Enunciado 114
+# Crie um código em Python que teste se o site Pudim está acessível pelo computador usado.
+
+
+# Enunciado 115A
+# Crie um pequeno sistema modularizado que permita cadastrar pessoas pelo seu nome e idade em um arquivo de texto simples.
+# O sistema só vai ter duas opções: cadastrar e listar todas as pessoas cadastradas.
+
+
+# Enunciado 115B
 #
 
+# Enunciado 115c
+#
