@@ -23,5 +23,22 @@ finally: #Bloco de código que será executado independentemente de ter dado err
     print('\nFim de cálculo!') 
 
 
-
 # O melhor: tratar cada tipo de exceção separadamente
+
+
+try: # Bloco de código que será executado
+    a = int(input('Digite o primeiro valor:  '))
+    b = int(input('Digite o segundo valor: '))
+    r = a/b
+except (ValueError, TypeError):
+    print('## Ocorreu um erro com os tipos de dados que você digitou! ##')
+except ZeroDivisionError:
+    print('## Não é possível dividir por zero!! ##')
+except KeyboardInterrupt:
+    print('## O usuário preferiu não informar os dados! ##')
+except Exception as erro: #Erro genérico
+    print('## O erro encontrado foi {erro.__cause__} ##')
+else: #Bloco de código que será executado caso não dê erro
+    print('O valor divisão {}/{} = {}'.format(a,b,r))
+finally: # Bloco de código que será executado independente de ter dado certo ou erro
+    print('Fim do programa')
